@@ -1,0 +1,147 @@
+<style>
+    .fancybox__slide.is-selected.has-ajax {
+        padding: 0;
+    }
+
+    div.fancybox__content .map_point_modal + .carousel__button.is-close {
+        top: 10px;
+        right: calc(var(--scroll-bar-width) + var(--side-padding));
+        color: var(--close-btn-color);
+    }
+
+    div.fancybox__content {
+        padding: 0;
+        height: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 38px;
+        color: red;
+        line-height: 40px;
+    }
+
+    h1:first-letter {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 30px;
+        text-indent: 1.5cm;
+        line-height: 38px;
+    }
+
+    p:first-letter {
+        font-size: 36px;
+        color: red;
+        font-weight: bold;
+    }
+
+    .map_point_modal {
+        background-image: url("img/baloon_back.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        /*height: 100%;*/
+        /*width: 100%;*/
+        /*padding: 40px;*/
+        /*height: 100vh;*/
+        /*overflow-y: auto;*/
+    }
+
+    .map_point_images {
+        padding-top: 30px;
+    }
+
+    .grid-mas {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .grid-mas-item {
+        height: 100%;
+        flex-basis: 27%;
+
+        margin: 20px 0;
+        overflow: hidden;
+        padding: 20px;
+
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+    }
+
+    .grid-mas-subitem {
+        margin-top: 100%;
+    }
+
+    .map_point_modal__parent {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .map_point_modal__sibling {
+        position: relative;
+        height: 100%;
+
+        padding: 50px var(--side-padding);
+        padding-right: calc(var(--scroll-bar-width) + var(--side-padding));
+
+        overflow: auto;
+    }
+
+</style>
+
+
+<div class="map_point_modal">
+    <div class="map_point_modal__parent">
+        <div class="map_point_modal__sibling">
+            <div>
+                <h1>Угловая башня</h1>
+                <p>
+                    Юго-западная угловая башня относится к постройкам Албазинского острога 1682-1685 гг. Сооружение
+                    соединяет южную, идущую вдоль впадающей в Амур реки (длина 76-77 м) и западную стены, расположенную
+                    вдоль обрыва к реке Амур (длина 95 м).
+                </p>
+                <p>
+                    Типичное крепостное строение. Входит в комплекс оборонительных сооружений. Высота (без крыши) около
+                    8 м, ширина основания около 6,5 м. Имеет специальную надстройку в виде сруба большего размера, чем
+                    основной сруб башни (в русской терминологии эта надстройка называлась «облам»). «Облам» позволял
+                    защитникам сверху поражать врагов, подошедших вплотную к стенам башни. В стенах башен и в «обламе»
+                    были проделаны бойницы. Высота «розвала», благодаря которой формировался «облам», на этих башнях
+                    составляла 1,5 метра. Крыша из двойного слоя досок с зубцами. Внутренним перекрытием башни
+                    разделялись на 2 этажа.
+                </p>
+                <p>
+                    Башня входит в комплекс «Большой острог» (1685-1689). В экспозиции рассказывается о гончарном
+                    ремесле и торговле.
+                </p>
+            </div>
+            <div class="map_point_images">
+                <div class="grid-mas">
+                    <div class="grid-mas-item"
+                         data-src="/img/ub_3/угловая%20башня%201682-85%20гг.jpg"
+                         data-fancybox="ub_3"
+                         data-caption="Угловая башня Албазинского острога 1682-1685 гг. Реконструкция, 2021 г."
+                         style="background-image: url(/img/ub_3/угловая%20башня%201682-85%20гг.jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/ub_3/Гончарное%20ремесло.jpg"
+                         data-fancybox="ub_3"
+                         data-caption="Гончарное ремесло."
+                         style="background-image: url(/img/ub_3/Гончарное%20ремесло.jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

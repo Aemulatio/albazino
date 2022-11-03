@@ -1,0 +1,1026 @@
+<style>
+	/*BOOK*/
+
+	.fancybox__track .fancybox__slide {
+		padding: 0;
+	}
+
+	div.fancybox__container .carousel__button.is-close {
+		top: 10px;
+		right: 10px;
+		color: black;
+	}
+
+	@font-face {
+		font-family: "Balkara";
+		src: url("../fonts/Balkara Condensed/BalkaraFreeCondensed.ttf") format("truetype");
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Triod";
+		src: url("../fonts/Triod Postnaja/TriodPostnaja.ttf") format("truetype");
+		font-weight: normal;
+		font-style: normal;
+	}
+
+
+	#personals_modal {
+		padding: 40px 40px 0;
+		/*font-family: "Balkara";*/
+		width: 100%;
+		height: 100%;
+
+		padding: 0;
+		overflow: hidden;
+		position: relative;
+
+		align-items: center;
+		justify-content: center;
+	}
+
+	#personals_modal > div {
+		/*margin-top: 20px;*/
+	}
+
+	#personals_modal ul {
+		list-style: none;
+
+		counter-set: page 1;
+	}
+
+	#personals_modal ul li {
+		line-height: 40px;
+		font-size: 35px;
+		padding: 10px 0;
+	}
+
+	#personals_modal ul li a {
+		/*text-decoration: underline;*/
+		counter-increment: page 2;
+	}
+
+	#personals_modal ul li a:first-letter, #personals_modal ul li:first-letter {
+		color: red;
+		/*font-size: 35px;*/
+	}
+
+	#personals_modal ul li a:after {
+		content: counter(page);
+		float: right;
+	}
+
+	#personals_modal .fancybox__content {
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	/*book controls*/
+
+	#to_content, #toContentReconstruct {
+		display: none;
+	}
+
+	#personals_modal #to_content .menu__content:after, #toContentReconstruct .menu__content:after {
+		background: hsl(var(--hue, 0), 50%, 50%);
+		content: '';
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		position: absolute;
+		height: calc(var(--size, 20) * .6vmin);
+		width: calc(var(--size, 20) * .6vmin);
+		top: 0;
+		left: 0;
+	}
+
+	#personals_modal #to_content .menu__toggle-label, #toContentReconstruct .menu__toggle-label {
+		cursor: pointer;
+		height: calc(var(--size, 20) * 0.3vmin);
+		width: calc(var(--size, 20) * 0.3vmin);
+		display: block;
+		--clip: circle(100% at 0% 0%);
+		-webkit-clip-path: var(--clip);
+		clip-path: var(--clip);
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: backdrop-filter calc(var(--speed, 1) * 1s) var(--ease), clip-path 0s, -webkit-clip-path 0s;
+	}
+
+
+	#personals_modal #to_content .menu__icon, #toContentReconstruct .menu__icon {
+		--scale: 1;
+		height: calc(var(--size, 20) * 0.15vmin);
+		width: calc(var(--size, 20) * 0.15vmin);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-70%, -70%) scale(var(--scale, 1));
+		fill: var(--primary);
+		transition: all calc(var(--speed, 1) * 1s) var(--ease);
+	}
+
+
+	#personals_modal #closeBook .menu__content, #closeBookReconstruct .menu__content {
+		left: 100%;
+	}
+
+	#personals_modal #closeBook .menu__content:after, #closeBookReconstruct .menu__content:after {
+		background: hsl(var(--hue, 0), 50%, 50%);
+		content: '';
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		position: absolute;
+		height: calc(var(--size, 20) * .6vmin);
+		width: calc(var(--size, 20) * .6vmin);
+		top: 0;
+		left: 0;
+	}
+
+	#personals_modal #closeBook .menu__toggle-labelBOOK, #closeBookReconstruct .menu__toggle-labelBOOK {
+		cursor: pointer;
+		height: calc(var(--size, 20) * 0.3vmin);
+		width: calc(var(--size, 20) * 0.3vmin);
+		display: block;
+		--clip: circle(100% at 0% 0%);
+		-webkit-clip-path: var(--clip);
+		clip-path: var(--clip);
+		position: absolute;
+		top: 0;
+		/*left: 100%;*/
+		right: 0;
+		transition: backdrop-filter calc(var(--speed, 1) * 1s) var(--ease), clip-path 0s, -webkit-clip-path 0s;
+	}
+
+
+	#personals_modal #closeBook .menu__icon, #closeBookReconstruct .menu__icon {
+		--scale: 1;
+		height: calc(var(--size, 20) * 0.15vmin);
+		width: calc(var(--size, 20) * 0.15vmin);
+		position: absolute;
+		top: 50%;
+		left: 70%;
+		transform: translate(-70%, -70%) scale(var(--scale, 1));
+		fill: var(--primary);
+		transition: all calc(var(--speed, 1) * 1s) var(--ease);
+	}
+
+	.flip-book {
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+		display: none;
+		background-size: cover;
+	}
+
+	.page {
+		padding: 20px;
+		background-color: #fdfaf7;
+		color: #785e3a;
+		border: solid 1px #c2b5a3;
+		overflow: hidden;
+	}
+
+	.page .page-content {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: stretch;
+	}
+
+	.page .page-content .page-header {
+		height: 36px;
+		font-size: 30px;
+		text-transform: uppercase;
+		text-align: center;
+		font-weight: normal;
+	}
+
+	.page .page-content .page-image {
+		height: 100%;
+		background-size: contain;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+
+	.page .page-content .page-text {
+		height: 100%;
+		flex-grow: 1;
+		/*font-size: 80%;*/
+		text-align: justify;
+		margin-top: 20px;
+		/*padding-top: 10px;*/
+		padding: 10px 30px 10px;
+		margin-bottom: 92px;
+		box-sizing: border-box;
+		border-top: solid 1px #f4e8d7;
+		line-height: 34px;
+		font-size: 26px;
+
+		text-indent: 1.5cm;
+
+		overflow-y: auto;
+	}
+
+
+	.page .page-content .page-text p:first-letter {
+		font-size: 32px;
+		color: red;
+		font-weight: bold;
+	}
+
+	.page .page-content .page-footer {
+		height: 30px;
+		border-top: solid 1px #f4e8d7;
+		font-size: 80%;
+		color: #998466;
+	}
+
+	.page.--left {
+		border-right: 0;
+		box-shadow: inset -7px 0 30px -7px rgba(0, 0, 0, 0.4);
+	}
+
+	.page.--right {
+		border-left: 0;
+		box-shadow: inset 7px 0 30px -7px rgba(0, 0, 0, 0.4);
+	}
+
+	.page.--right .page-footer {
+		text-align: right;
+	}
+
+	.page.hard {
+		background-color: #f2e8d9;
+		border: solid 1px #998466;
+	}
+
+	.page.page-cover {
+		background-color: #e3d0b5;
+		color: #785e3a;
+		border: solid 1px #998466;
+	}
+
+	.page.page-cover h2 {
+		text-align: center;
+		padding-top: 50%;
+		font-size: 210%;
+	}
+
+	.page.page-cover.page-cover-top {
+		box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), -2px 0 5px 2px rgba(0, 0, 0, 0.4);
+	}
+
+	.page.page-cover.page-cover-bottom {
+		box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), 10px 0 8px 0px rgba(0, 0, 0, 0.4);
+	}
+</style>
+
+<div id="personals_modal">
+	<div class="flip-book" id="book">
+		<!--Содержание-->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header"></h2>
+				<div class="page-text first-page">
+					<h1>Персоналии</h1>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+
+				<div class="page-footer">1</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Содержание</h2>
+				<div class="page-text">
+					<ul>
+						<li>
+							<a id="beiton">Бейтон Афанасий Иванович</a>
+						</li>
+						<li>
+							<a id="voiloshnikov">Войлошников Иван Семёнович</a>
+						</li>
+						<li>
+							<a id="germogen">Гермоген Киренский и Албазинский</a>
+						</li>
+						<li>
+							<a id="f_evsevev">Евсевьев Фёдор</a>
+						</li>
+						<li>
+							<a id="ya_evsevev">Евсевьев Яков</a>
+						</li>
+						<li>
+							<a id="lonshakov">Лоншаков Григорий Иванович</a>
+						</li>
+						<li>
+							<a id="tolbuzin">Толбузин Алексей Ларионович</a>
+						</li>
+						<li>
+							<a id="chernigovskii">Черниговский Никифор Романович</a>
+						</li>
+					</ul>
+				</div>
+				<div class="page-footer">2</div>
+			</div>
+		</div>
+
+		<!-- Beiton -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Бейтон Афанасий Иванович</h2>
+				<div class="page-text">
+					<p>
+						<b>Афанасий Иванович (?) Бейтон </b>– родился в Пруссии, поручик, сын боярский; с 1685 г. -
+						казачий голова, назначен командиром полка.
+					</p>
+					<p>
+						Вербовка Бейтона на русскую службу произошла в 1654 г. Участвовал в русско-польской войне
+						1654-1667 гг. В первой половине 1660-х гг., его перевели в Томск, где он должен был обучать
+						местных служилых людей солдатскому строю. В Томске Бейтон женился (до 1665 г.) и принял
+						православие, затем был отправлен на службу в Москву, после чего в Енисейск с повёрстанием в
+						дети боярские, где перешёл в разряд русского служилого человека, обязанного службой новому
+						Отечеству.
+					</p>
+					<p>
+						9 июля 1685 г. полк Бейтона прибыл в Нерчинск, где воевода определил его помощником
+						Толбузина и первым во главе отряда из 198 человек 1 августа 1685 г. выслал на место
+						сожженного Албазина. Прибыв на место 10 августа, казаки под руководством Бейтона провели
+						работу по заготовке продовольствия, а к лету 1686 г. почти полностью возвели новую крепость.
+					</p>
+					<p>
+						С 7 июля 1686 г. по 30 августа 1687 г. участвовал в обороне Албазина. После смерти Толбузина
+						принял командование крепостью и гарнизоном. 8 октября 1689 г. сообщил вышестоящему
+						начальству, что Албазин разрушен, и отбыл в Нерчинск.
+					</p>
+					<p>
+						Был прикомандирован к Ф.А. Головину, главе внешнеполитического ведомства России. В мае 1690
+						г. с посольством отбыл из Иркутска на запад. В 1691-1692 гг. Бейтон служил в Иркутске, в
+						1696 г. назначен приказчиком в Верхоленский острог. В июле 1697 г. отбыл в Удинский
+						острог.
+					</p>
+					<p>
+						По сообщению сына Бейтона Якова в 1719 г., отец умер в 1698-1699 гг. Место захоронения
+						Бейтона и возраст неизвестен.
+					</p>
+				</div>
+				<div class="page-footer">3</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Бейтон Афанасий Иванович</h2>
+				<div class="page-text">
+					<div class="beiton person-slider">
+						<div class="carousel__slide"
+							 data-src="material/Бейтон/1.jpg"
+							 data-fancybox="beiton"
+							 data-caption="<b>Осада крепости маньчжурами в 1686-1687 гг.</b> Рисунок из книги Н. Витсена «Северная и Восточная Тартария» 1692 г. Копия."
+
+							 style="background-image: url(/material/Beiton/1.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-fancybox="beiton"
+							 data-src="material/Бейтон/2.jpg"
+							 style="background-image: url(/material/Beiton/2.jpg)"
+							 data-caption="Чертёж р. Амур, составленный Афанасием Бейтоном, руководителем обороны Албазинского острога (1686-1687). Из «Хорографической чертёжной книги» С.У. Ремезова. 1701 г."
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-fancybox="beiton"
+							 data-src="material/Бейтон/3.webp"
+							 style="background-image: url(/material/Beiton/3.webp)"
+							 data-caption="Собирательная реконструкция облика начального человекаАлбазинского острога,1670-е гг. Автор Н. Фомин. Из книги «Албазинский острог: История, археология, антропология народов Приамурья» А.П. Забияко, А.Н. Черкасов. 2019 г."
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">4</div>
+			</div>
+		</div>
+
+		<!-- Voiloshnikov -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Войлошников Иван Семёнович</h2>
+				<div class="page-text">
+					<p>
+						<b>Иван Семёнович Войлошников </b>– албазинский казак, казачий десятник, выборный приказчик
+						Албазинского острога (1682 – 1684 гг.).
+					</p>
+					<p>
+						В 1676 г. Войлошников вместе с другими казаками Албазина, ввиду угрозы маньчжурского
+						нападения, подал царю челобитную о снабжении острога оружием, порохом и свинцом.
+					</p>
+					<p>
+						С разрешения нерчинского воеводы в апреле 1682 г. стал приказчиком Албазинского острога и в
+						дальнейшем фигурировал под фамилией Семёнов. Находясь на приказе, И. Войлошников проводил
+						независимую от нерчинских воевод политику.
+					</p>
+					<p>
+						Войлошников проводил большую работу по укреплению обороноспособности Албазинского острога.
+						Не ранее 26 ноября 1682 г. задержал в Албазинском остроге и задействовал на работах по
+						перестройке крепости 282 человека из числа промышленных и торговых людей. В 1683 г. работы
+						по переустройству острога были, в основном, завершены.
+					</p>
+					<p>
+						26 ноября 1682 г., Войлошников встречался с китайскими воеводами, которые прибыли под
+						Албазинский острог в поиске «беглых двух мужиков».
+					</p>
+					<p>
+						И.С. Войлошников передал обновленный Албазинский острог Алексею Толбузину (май 1684 г.).
+						Участвовал в обороне Албазинского острога в 1685 г. Согласно отписке нерчинского воеводы
+						И.Е. Власова, после сдачи Албазинского острога он перешёл на службу к маньчжурскому
+						императору.
+					</p>
+				</div>
+				<div class="page-footer">5</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Войлошников Иван Семёнович</h2>
+				<div class="page-text">
+					<div class="voiloshnikov person-slider">
+						<div class="carousel__slide"
+							 data-src="material/Войлошников/1.jpg"
+							 data-fancybox
+							 data-caption="Графическая реконструкция внешнего облика албазинца. Приамурье, XVII в. Авторы Н. Фомин, Е. Багрин. Из книги «Албазинский острог: История, археология, антропология народов Приамурья» А.П. Забияко, А.Н. Черкасов. 2019 г."
+							 style="background-image: url(../material/Voiloshnikov/1.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">6</div>
+			</div>
+		</div>
+		<!-- Гермоген -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Гермоген Киренский и Албазинский</h2>
+				<div class="page-text">
+					<p>
+						<b>Гермоген (Ермоген) Киренский и Албазинский </b> – иеромонах, основатель и строитель
+						Усть-Киренского Троицкого монастыря и Албазинской Спасской пустыни.
+					</p>
+					<p>
+						Установлен факт, что в Сибирь Гермоген попал из России, будучи уже иеромонахом.
+					</p>
+					<p>
+						В 1663г. илимский воевода Л.А. Обухов отдал в распоряжение черного попа Гермогена Никольский
+						погост в устье р.Лены, неподалеку от того места, где будет впоследствии основан г.Киренск.
+						Через два года иеромонах Гермоген получил от митрополита Симеона грамоту, благословляющую
+						устроение Усть-Киренской пустыни. В 1665 г. Иеромонахом Гермогеном была заложена Троицкая
+						церковь. В этом же году, в числе казаков, возглавляемых Н. Черниговским, Гермоген прибыл на
+						Амур и поселился в уединенном месте.
+					</p>
+					<p>
+						С собой иеромонах принес на Амур нерукотворный образ Спасителя. В честь этой иконы получила
+						своё название монастырская церковь, а впоследствии и монастырь (предположительно, дата
+						основания 1671 г.). Считается, что Гермоген принес с собою икону Божией Матери, именуемую
+						«Слово Плоть Бысть».
+					</p>
+					<p>
+						В 1685 г., во время осады Албазинского острога маньчжурами, Спасский монастырь сгорел, а
+						Гермоген навсегда покинул Албазин.
+					</p>
+					<p>
+						Иеромонах Гермоген поселился в Усть-Киренском Троицком монастыре, где принял схиму, здесь же
+						умер 19 декабря 1690г. Похоронен был в Троицком храме Киренской обители. В 1830-х гг. монахи
+						восстановили гробницу основавшего монастырь Гермогена, а в середине XIX в. на надгробии было
+						написано «Житие преподобного Гермогена Киренского», который почитался как святой.
+					</p>
+				</div>
+				<div class="page-footer">7</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Гермоген Киренский и Албазинский</h2>
+				<div class="page-text">
+					<div class="germogen person-slider">
+						<div class="carousel__slide"
+							 data-src="material/Гермоген%20(1)/Гермоген/1.jpg"
+							 data-fancybox="germogen"
+							 data-caption="Челобитная настоятеля Спасской Албазинской пустыни Гермогена царю Фёдору Алексеевичу. 1680 г. Копия."
+							 style="background-image: url('material/Гермоген%20(1)/Гермоген/1.jpg')"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Гермоген%20(1)/Гермоген/1_translate.jpg"
+							 data-fancybox="germogen"
+							 data-caption="Челобитная настоятеля Спасской Албазинской пустыни Гермогена царю Фёдору Алексеевичу. 1680 г. Современный."
+							 style="background-image: url('material/Гермоген%20(1)/Гермоген/1_translate.jpg')"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Гермоген%20(1)/Гермоген/2.jfif"
+							 data-fancybox="germogen"
+							 data-caption="Иеромонах Гермоген передаёт икону Пресвятой Богородицы албазинским казакам. 1665 г. Икона. ХХ в."
+							 style="background-image: url('material/Гермоген%20(1)/Гермоген/2.jfif')"
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Гермоген%20(1)/Гермоген/3.jpg"
+							 data-fancybox="germogen"
+							 data-caption="Иеромонах Гермоген Киренский и Албазинский - основатель и строитель Усть-Киренского Троицкого монастыря и Албазинской Спасской пустыни. XVII в. Портрет, художник не известен."
+							 style="background-image: url('material/Гермоген%20(1)/Гермоген/3.jpg')"
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Гермоген%20(1)/Гермоген/4.jpg"
+							 data-fancybox="germogen"
+							 data-caption="Ермоген с Албазинской иконой Божией Матери. ХХ в. Икона, автор – инокиня Макария Нелинь. "
+							 style="background-image: url('material/Гермоген%20(1)/Гермоген/4.jpg')"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+					<audio id="germogen_audio"
+						   src="material/Гермоген%20(1)/Гермоген/Челобитная%20настоятеля.mp3"
+						   controls
+						   loop>
+					</audio>
+				</div>
+				<div class="page-footer">8</div>
+			</div>
+		</div>
+		<!-- EvsevievFedor -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Евсевьев Фёдор</h2>
+				<div class="page-text">
+					<p>
+						<b>Федор Евсевьев</b> – промышленный человек, казачий десятник (не позднее 1 сентября 1676
+						г.), приказчик Албазинского острога.
+					</p>
+					<p>
+						В 1665 г. Федор Евсевьев был ленским промышленным человеком, один из участников заговора
+						против илимского воеводы Лаврентия Обухова. В показаниях сына Никифора Черниговского Федора,
+						указано прозвище Федора Евсевьева – плотник.
+					</p>
+					<p>
+						В построенном казаками Албазинском остроге Федор был распределен в служилые люди. После
+						смерти Н. Черниговского в начале лета 1675 г. Федора Евсевьева выбрали приказчиком
+						Албазинского острога.
+					</p>
+					<p>
+						В 1676 г. Николай Гаврилович Спафарий, видный русский дипломат, политический деятель,
+						учёный, отправившийся для переговоров в Китай, прислал в Албазинский острог распоряжение о
+						прекращении экспедиций по рекам Амуру и Зее до своего возвращения из Цинской империи. Однако
+						Федор Евсевьев летом 1676 г. сообщил в Нерчинск, что по просьбе тунгусов посылал на р. Зею
+						служилых людей для постройки зимовья и сбора ясака.
+					</p>
+					<p>
+						Последним документом, составленным в Албазинском остроге под руководством Федора Евсевьева,
+						была челобитная Албазинских казаков (между 1 сентября 1676 г. и 31 августа 1677 г.), в
+						которой он настоятельно просил прислать из государственной казны оружие, порох и свинец на
+						случай осады острога и для охраны мягкой рухляди и аманатов.
+					</p>
+					<p>
+						Дальнейшая судьба Федора Евсевьева неизвестна.
+					</p>
+				</div>
+				<div class="page-footer">9</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Евсевьев Фёдор</h2>
+				<div class="page-text">
+					<div class="fedor person-slider">
+						<div class="carousel__slide"
+							 data-src="material/Евсевьев%20Фёдор/1.jpg"
+							 data-fancybox="fedor"
+							 data-caption="Донесение албазинского приказчика Федора Евсевьева нерчинскому воеводе П. Я. Шульгину о прекращении экспедиций по рекам Амуру и Зее до возвращения посольства Н. Г. Спафария из Цинской империи. 1676 г. "
+
+							 style='background: url("/material/Евсевьев%20Фёдор/1.jpg");'
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Евсевьев%20Фёдор/1обор.jpg"
+							 data-fancybox="fedor"
+							 data-caption="Донесение албазинского приказчика Федора Евсевьева нерчинскому воеводе П. Я. Шульгину о прекращении экспедиций по рекам Амуру и Зее до возвращения посольства Н. Г. Спафария из Цинской империи. 1676 г. "
+
+							 style='background: url("/material/Евсевьев%20Фёдор/1обор.jpg");'
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Евсевьев%20Фёдор/2.jpg"
+							 data-fancybox="fedor"
+							 data-caption="Картина Н. Н. Каразина «Сибирские казаки исследуют новые земли. XVIII в.». Холст, масло. ХХ в."
+
+							 style='background: url("/material/Евсевьев%20Фёдор/2.jpg");'
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+					<audio
+							id="fedor_audio"
+							src="/material/Евсевьев%20Фёдор/Отписка%20Евсевьева.mp3"
+							controls
+							loop>
+					</audio>
+				</div>
+				<div class="page-footer">10</div>
+			</div>
+		</div>
+		<!-- EvsevievYakov -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Евсевьев Яков</h2>
+				<div class="page-text">
+					<p>
+						<b>Яков Евсевьев (Евсивьев, Евъсиев)</b> – енисейский сын боярский, приказчик Албазинского
+						острога.
+					</p>
+					<p>
+						В 1680 г. назначен нерчинским воеводой Федором Воейковым приказчиком Албазинского острога,
+						сменив на этом посту сына боярского Григория Лоншакова. В этом же году Я. Евсевьев направил
+						на реку Зею отряд из 12 казаков во главе с Г.С. Самойловым (Мыльником), которые поставили
+						возле устья левого притока реки Зеи – реки Долонец - Долонский острог.
+					</p>
+					<p>
+						В 1680 г. Евсевьев, по грамоте царя Федора Алексеевича, отписал Спасскую пустынь «со всяким
+						заводом» на государя. Находился на приказе в остроге до 1681 г.
+					</p>
+					<p>
+						Сменил Евсевьева на посту приказного человека сын нерчинского воеводы Федора Воейкова –
+						Андрей.
+					</p>
+				</div>
+				<div class="page-footer">11</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Евсевьев Яков</h2>
+				<div class="page-text">
+					<div class="yakov person-slider">
+						<div class="carousel__slide"
+							 data-src="material/Евсевьев%20Яков/1.webp"
+							 data-fancybox="yakov"
+							 data-caption="Графическая реконструкция внешнего облика казака. Приамурье, XVII в. Автор О. Федоров. 2013 г."
+
+							 style="background-image: url('material/Евсевьев%20Яков/1.webp')"
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">12</div>
+			</div>
+		</div>
+		<!-- Lonshakov -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Лоншаков Григорий Иванович</h2>
+				<div class="page-text">
+					<p>
+						<b>Лоншаков Григорий Иванович</b> – нерчинский сын боярский, приказчик Нерчинского, Албазинского
+						и Теленбинского острогов.
+					</p>
+					<p>
+						Впервые упоминается в 1674 г, когда он по поручению нерчинского воеводы П.Я. Шульгина был
+						отправлен к монголам «для животинного торгу», также ему было поручено уговорить вернуться
+						«братских людей», изменивших государю.
+					</p>
+					<p>
+						В 1676 г. под руководством Свешникова, Гаврилова и Лоншакова отправлены в Даурию отряды
+						казаков-рудознатцев. В этом же году выбран в управляющие Нерчинским острогом вместе с десятником
+						И.И. Астраканцовым.
+					</p>
+					<p>
+						В 1677 г. Григория Лоншакова назначают приказным Албазинского острога, где в 1680 г. его сменил
+						Яков Евсевьев.
+					</p>
+					<p>
+						Находясь на приказе в Албазине, Г.И. Лоншаков поддержал инициативу албазинских казаков по
+						освоению района рек Зеи и Селемджи.
+					</p>
+					<p>
+						В июне 1684 г. отряд казаков во главе с Г.И. Лоншаковым был направлен к Аргуни за рудой (100
+						пудов и более), образцы которой были высланы в Сибирский приказ. В 1685 г. Г.И. Лоншаков стал
+						приказчиком Теленбинского острога.
+					</p>
+					<p>
+						Григорий Лоншаков привлекался нерчинским воеводой для установления дипломатических связей с
+						монголами. В 1681 г. он с 25 казаками был послан в Монголию с торговым караваном для закупки
+						скота. В 1690 г. Лоншаков направляется в Пекин с дипломатической миссией, во время которой
+						предпринял попытку вернуть на родину бурятских и других ясачных людей, а также русских пленных.
+						В ответ ему было обещано выдать ясачных людей, возвратить же пленных албазинцев было отказано.
+					</p>
+					<p>
+						6 сентября 1690 г. Г.И. Лоншаков вернулся в Нерчинск. Умер по пути в Москву.
+					</p>
+				</div>
+				<div class="page-footer">13</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Лоншаков Григорий Иванович</h2>
+				<div class="page-text">
+					<div class="lonshakov person-slider">
+						<div class="carousel__slide"
+							 data-src="material/Лоншаков/1.jpg"
+							 data-fancybox="lonshakov"
+							 data-caption="Графическая реконструкция. Остроги Сибири. XVII в. "
+							 style="background-image: url('../material/Lonshakov/1.jpg')"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Лоншаков/2.jpg"
+							 data-fancybox="lonshakov"
+							 data-caption="Графический рисунок «Русские послы в Китае XVII в.» (посольство Н. Г. Спафария). Р. Штейн. Журнал Нива. Начало ХХ в."
+							 style="background-image: url('../material/Lonshakov/2.jpg')"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">14</div>
+			</div>
+		</div>
+		<!-- Tolbuzin -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Толбузин Алексей Ларионович</h2>
+				<div class="page-text">
+					<p>
+						<b>Толбузин Алексей Ларионович</b> — тобольский сын боярский, тобольский «дворянин по выбору»
+						(1683 г.), иркутский, албазинский воевода.
+					</p>
+					<p>
+						По царской грамоте 20 апреля 1676 г., после смерти старшего брата Алексей Толбузин назначен на
+						приказ в Албазинский острог. Получив в Тобольске выделенное для Даурских острогов вооружение, 29
+						июня 1676 г. выехал в Нерчинск, в Албазин прибыл 15 февраля. Передача Албазинского острога от
+						одного приказчика к другому происходила строго в соответствии с наказными памятями, данными
+						каждому из них. В период с 15 по 24 февраля проходила передача острога от Любима Евсевьева к
+						Алексею Толбузину, а после этого Толбузин передал острог Г. Лоншакову.
+					</p>
+					<p>
+						После смерти П.Я. Шульгина (после 18 октября 1678 г) принял Нерчинский острог. Первая даурская
+						служба Алексея Толбузина на этом завершилась. Всего на приказе в Албазинском остроге он пробыл
+						девять дней, а в Нерчинске – пять месяцев.
+					</p>
+					<p>
+						В 1681 г. А. Толбузин служил приказным в Киргинской слободе. С образованием Албазинского
+						воеводства назначен в 1684 г. воеводой в Албазин, где вел работу по укреплению острога и
+						организации его обороны. В июне 1685 г. многочисленная маньчжурская армия осадила крепость.
+						Защитники острога были вынуждены оставить его и отступить к Нерчинску. С уходом маньчжуров
+						Толбузин вновь отстроил острог и укрепил его. Гарнизон Албазина был значительно увеличен.
+					</p>
+					<p>
+						Зимой-весной 1686 г. боевые действия возобновились. В июне острог был осажден и начались
+						тяжелые бои. Первый штурм маньчжуров был отбит, в этом заслуга умелого и энергичного
+						командования воеводы. На 5-й день осады Алексей Толбузин был тяжело ранен ядром («отшибло
+						правую ногу по колено») и через 4 дня, 11 июня 1686 г., скончался. Командование крепостью
+						после него принял Афанасий Бейтон.
+					</p>
+				</div>
+				<div class="page-footer">15</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Толбузин Алексей Ларионович</h2>
+				<div class="page-text">
+					<div class="tolbuzin person-slider">
+						<div class="carousel__slide"
+							 data-src="material/Толбузин/1.jpg"
+							 data-fancybox="tolbuzin"
+							 data-caption="Графическая реконструкция облика воеводы. Приамурье, XVII в. Авторы Н. Фомин, Е. Багрин. Из книги «Албазинский острог: История, археология, антропология народов Приамурья» А.П. Забияко, А.Н. Черкасов. 2019 г."
+							 style="background-image: url(../material/Tolbuzin/1.jpg); background-position: top center !important;"
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Толбузин/2.jpg"
+							 data-fancybox="tolbuzin"
+							 data-caption="Картина А.А. Сучкова «Осада маньчжурами Албазинского острога в 1685 г.». Холст, масло. 1988 г."
+							 style="background-image: url(../material/Tolbuzin/2.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Толбузин/3.jpg"
+							 data-fancybox="tolbuzin"
+							 data-caption="Картина А.А. Сучкова «Осада маньчжурами Албазинского острога в 1685 г.». Холст, масло. 1988 г."
+							 style="background-image: url(../material/Tolbuzin/3.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">16</div>
+			</div>
+		</div>
+		<!-- Chernigovskii -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Черниговский Никифор Романович</h2>
+				<div class="page-text">
+					<p>
+						<b>Черниговский Никифор Романович</b> — енисейский служилый человек, илимский казачий
+						пятидесятник, приказной человек в Албазинском остроге.
+					</p>
+					<p>
+						«Микифор Черниговский», «черкашенин Брягильского повету», как он сам себя назвал. 29 сентября
+						1637 г. прибыл с семьей в Енисейск, принят на казачью службу (с 1637 по 1649 гг.). В 1649 г.
+						переведён в Илимск. В 1653 г. Черниговский участвовал в погоне за совершившими побег на Амур
+						илимскими служилыми людьми. В 1654 г. Н. Черниговский – илимский десятник, служил и жил в
+						Киренске. В 1656-1657 гг. Черниговский с группой казаков, возглавляемых атаманом Н. Качиным,
+						доставил в Москву соболиную казну, образцы копытчатого ревня и отписки илимского воеводы.
+					</p>
+					<p>
+						Зимой 1665 г. с сыном Фёдором участвовал в заговоре против илимского воеводы Лаврентия
+						Обухова. Черниговский непосредственного участия в ограблении и убийстве воеводы не принимал,
+						но оставался основным руководителем заговора. После расправы над воеводой казаки бежали на
+						Амур, где поставили на месте Албазинского городища острог, завели пашню и взяли на себя
+						функции сбора ясака с местного населения. Н. Черниговский установил связь с нерчинским
+						приказным человеком Ларионом Толбузиным, который в то время ведал даурскими острогами.
+						Тяжелое положение даурских острогов из-за нехватки служилых людей вынудило Л. Толбузина
+						признать Н. Черниговского "приказным человеком" (назначенным государством на должность)
+						Албазинского острога.
+					</p>
+					<p>
+						Не позднее 1667 г. Н. Р. Черниговский с товарищами собранный ясак стали переправлять через
+						Нерчинск в Москву. В 1673 г. Черниговский исполнял обязанности приказного человека в Албазине.
+						После сдачи Албазинского острога находился в Нерчинске. В начале лета 1675 г. Никифор
+						Черниговский умер, после чего в Албазин пришла новость о его помиловании за участие в заговоре
+						против Обухова.
+					</p>
+				</div>
+				<div class="page-footer">17</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content" style="position:relative">
+				<h2 class="page-header">Черниговский Никифор Романович</h2>
+				<div class="page-text">
+					<div class="chernigovskii person-slider">
+						<div class="carousel__slide"
+							 data-src="material/Черниговский/1.jpg"
+							 data-fancybox="chernigovskii"
+							 data-caption="Сибирские казаки. Графический рисунок. ХХ в."
+							 style="background-image: url(../material/Chernigovskii/1.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Черниговский/2.jpg"
+							 data-fancybox="chernigovskii"
+							 data-caption="Графическая реконструкция внешнего облика казака. Приамурье, 1650-е гг. Автор Н. Фомин, Е. Багрин. Из книги «Албазинский острог: История, археология, антропология народов приамурья» А.П. Забияко, А.Н. Черкасов. 2019 г."
+							 style="background-image: url(../material/Chernigovskii/2.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="material/Черниговский/3.jpg"
+							 data-fancybox="chernigovskii"
+							 data-caption="Албазинский острог 1665-1681 гг. Реконструкция. ХХ в."
+							 style="background-image: url(../material/Chernigovskii/3.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">18</div>
+			</div>
+		</div>
+	</div>
+	<div id="to_content">
+		<label class="menu__toggle-label menu__toggle-label--closer">
+			<svg class="menu__icon" preserveAspectRatio="xMinYMin" viewBox="0 0 24 24">
+				<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path>
+			</svg>
+		</label>
+		<ul class="menu__content">
+		</ul>
+	</div>
+	<div id="closeBook">
+		<label class="menu__toggle-labelBOOK menu__toggle-label--closer">
+			<svg class="menu__icon" preserveAspectRatio="xMinYMin" viewBox="0 0 24 24">
+				<path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path>
+			</svg>
+		</label>
+		<ul class="menu__content">
+		</ul>
+	</div>
+</div>
+
+
+<script>
+
+	// "use strict"
+
+	window.germogen_audio = new Plyr("#germogen_audio", {
+		controls:
+			['play', 'progress', 'current-time', 'volume',],
+	})
+
+	window.fedor_audio = new Plyr("#fedor_audio", {
+		controls:
+			['play', 'progress', 'current-time', 'volume',],
+	})
+
+
+	const pageFlip = new PageFlip(document.getElementById('book'),
+		{
+			width: window.screen.width * .5 - 60,//800, // base page width
+			height: window.screen.height * .9,//900, // base page height
+
+			size: "fixed",
+
+			maxShadowOpacity: 0.5, // Half shadow intensity
+			showCover: false,
+			mobileScrollSupport: false, // disable content scrolling on mobile devices
+			disableFlipByClick: true,
+			showPageCorners: false
+		}
+	);
+
+	pageFlip.loadFromHTML(document.querySelectorAll('#book .page'));
+
+	document.querySelector("#personals_modal #to_content").addEventListener('click', () => {
+		pageFlip.flip(0)
+	})
+	document.querySelector("#book #beiton").addEventListener("click", () => {
+		pageFlip.flip(2)
+	});
+	document.querySelector("#book #voiloshnikov").addEventListener("click", () => {
+		pageFlip.flip(4)
+	});
+	document.querySelector("#book #germogen").addEventListener("click", () => {
+		pageFlip.flip(6)
+	});
+	document.querySelector("#book #f_evsevev").addEventListener("click", () => {
+		pageFlip.flip(8)
+	});
+	document.querySelector("#book #ya_evsevev").addEventListener("click", () => {
+		pageFlip.flip(10)
+	});
+	document.querySelector("#book #lonshakov").addEventListener("click", () => {
+		pageFlip.flip(12)
+	});
+	document.querySelector("#book #tolbuzin").addEventListener("click", () => {
+		pageFlip.flip(14)
+	});
+	document.querySelector("#book #chernigovskii").addEventListener("click", () => {
+		pageFlip.flip(16)
+	});
+	pageFlip.on('flip', (e) => {
+		if (e.data > 1) {
+			$("#personals_modal #to_content").show();
+		} else {
+			$("#personals_modal #to_content").hide();
+		}
+		if (e.data !== 9) {
+			window.germogen_audio.pause()
+		} else
+			window.germogen_audio.play()
+
+		if (e.data !== 11)
+			window.fedor_audio.pause()
+		else
+			window.fedor_audio.play()
+	})
+	$("#closeBook").on('click', () => {
+		$.fancybox.close();
+		germogen_audio.pause()
+		fedor_audio.pause()
+	})
+</script>

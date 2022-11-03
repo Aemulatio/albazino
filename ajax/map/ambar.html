@@ -1,0 +1,149 @@
+<style>
+    .fancybox__slide.is-selected.has-ajax {
+        padding: 0;
+    }
+
+    div.fancybox__content .map_point_modal + .carousel__button.is-close {
+        top: 10px;
+        right: calc(var(--scroll-bar-width) + var(--side-padding));
+        color: var(--close-btn-color);
+    }
+
+    div.fancybox__content {
+        padding: 0;
+        height: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 38px;
+        color: red;
+        line-height: 40px;
+    }
+
+    h1:first-letter {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 30px;
+        text-indent: 1.5cm;
+        line-height: 38px;
+    }
+
+    p:first-letter {
+        font-size: 36px;
+        color: red;
+        font-weight: bold;
+    }
+
+    .map_point_modal {
+        background-image: url("img/baloon_back.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        /*height: 100%;*/
+        /*width: 100%;*/
+        /*padding: 40px;*/
+        /*height: 100vh;*/
+        /*overflow-y: auto;*/
+    }
+
+    .map_point_images {
+        padding-top: 30px;
+    }
+
+    .grid-mas {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .grid-mas-item {
+        height: 100%;
+        flex-basis: 27%;
+
+        margin: 20px 0;
+        overflow: hidden;
+        padding: 20px;
+
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+    }
+
+    .grid-mas-subitem {
+        margin-top: 100%;
+    }
+
+    .map_point_modal__parent {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .map_point_modal__sibling {
+        position: relative;
+        height: 100%;
+
+        padding: 50px var(--side-padding);
+        padding-right: calc(var(--scroll-bar-width) + var(--side-padding));
+
+        overflow: auto;
+    }
+
+</style>
+
+<div class="map_point_modal">
+    <div class="map_point_modal__parent">
+        <div class="map_point_modal__sibling">
+            <div>
+                <h1>АМБАР</h1>
+                <p>
+                    Амбар относится к постройкам Албазинского острога 1665-1666 гг. Точный размер строения неизвестен. О размерах житницы можно судить по хранившемуся там количеству зерна 260 пудов (это более 4 тонн). Государево зерно измерялось в бочках, в каждую входило чуть больше 1 пуда зерна.
+                </p>
+                <p>
+                    Из источников следует, что в амбаре хранилась «ясачная и десятинная и товарные казна», «зелье ручное и пушечное», свинец, калыпы, пищальные замки для ремонта пищалей, уклад  и пушечное железо, сельскохозяйственный и иной инструмент, якоря, «подарочная казна» – предметы для подарков коренным народам Приамурья принявших русское подданство: котлы из меди, оловянная посуда, ножи и заготовки для них, одекуй (бисер для украшения одежды), безмены (для взвешивания зерна и других товаров), снасти «варовые» (просмоленный канат), железа ножные и ручные (кандалы), небольшие долбленые лодки и т. д.
+                </p>
+                <p>
+                    Жилым острог 1665-1666 гг. был только в первый период своего существования. В дальнейшем строения выполняли военно-административные и хозяйственные функции.
+                </p>
+            </div>
+            <div class="map_point_images">
+                <div class="grid-mas">
+                    <div class="grid-mas-item"
+                         data-src="/img/ambar/Амбар.%20д.%20Воробьи,%20начало%2020%20в..jpg"
+                         data-fancybox="ambar"
+                         data-caption="Амбар. д. Воробьи, начало ХХ в. Государственный историко-архитектурный и этнографический музей-заповедник «Кижи»."
+                         style="background-image: url(/img/ambar/Амбар.%20д.%20Воробьи,%20начало%2020%20в..jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/ambar/Амбар.%20начало%2020%20века.jpg"
+                         data-fancybox="ambar"
+                         data-caption="Амбар. д. Воробьи, начало ХХ в. Государственный историко-архитектурный и этнографический музей-заповедник «Кижи»."
+                         style="background-image: url(/img/ambar/Амбар.%20начало%2020%20века.jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/ambar/реконструкция%20амбара.Албазинский%20острог,%202021%20г..jpg"
+                         data-fancybox="ambar"
+                         data-caption="Фрагмент экспозиции казённого амбара. Туристический объект «Албазинский острог» на территории Амурского парка «Патриот», 2021 г."
+                         style="background-image: url(/img/ambar/реконструкция%20амбара.Албазинский%20острог,%202021%20г..jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>

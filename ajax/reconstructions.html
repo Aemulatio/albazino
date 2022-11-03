@@ -1,0 +1,732 @@
+<style>
+	/*BOOK*/
+
+	.fancybox__track .fancybox__slide {
+		padding: 0;
+	}
+
+	div.fancybox__container .carousel__button.is-close {
+		top: 10px;
+		right: 10px;
+		color: black;
+	}
+
+	@font-face {
+		font-family: "Balkara";
+		src: url("../fonts/Balkara Condensed/BalkaraFreeCondensed.ttf") format("truetype");
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Triod";
+		src: url("../fonts/Triod Postnaja/TriodPostnaja.ttf") format("truetype");
+		font-weight: normal;
+		font-style: normal;
+	}
+
+
+	#personals_modal {
+		padding: 40px 40px 0;
+		/*font-family: "Balkara";*/
+		width: 100%;
+		height: 100%;
+
+		padding: 0;
+		overflow: hidden;
+		position: relative;
+
+		align-items: center;
+		justify-content: center;
+	}
+
+	#personals_modal > div {
+		/*margin-top: 20px;*/
+	}
+
+	#personals_modal ul {
+		list-style: none;
+
+		counter-set: page 1;
+	}
+
+	#personals_modal ul li {
+		line-height: 40px;
+		font-size: 35px;
+		padding: 10px 0;
+	}
+
+	#personals_modal ul li a {
+		/*text-decoration: underline;*/
+		counter-increment: page 2;
+	}
+
+	#personals_modal ul li a:first-letter, #personals_modal ul li:first-letter {
+		color: red;
+		/*font-size: 35px;*/
+	}
+
+	#personals_modal ul li a:after {
+		content: counter(page);
+		float: right;
+	}
+
+	#personals_modal .fancybox__content {
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	/*book controls*/
+
+	#to_content, #toContentReconstruct {
+		display: none;
+	}
+
+	#personals_modal #to_content .menu__content:after, #toContentReconstruct .menu__content:after {
+		background: hsl(var(--hue, 0), 50%, 50%);
+		content: '';
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		position: absolute;
+		height: calc(var(--size, 20) * .6vmin);
+		width: calc(var(--size, 20) * .6vmin);
+		top: 0;
+		left: 0;
+	}
+
+	#personals_modal #to_content .menu__toggle-label, #toContentReconstruct .menu__toggle-label {
+		cursor: pointer;
+		height: calc(var(--size, 20) * 0.3vmin);
+		width: calc(var(--size, 20) * 0.3vmin);
+		display: block;
+		--clip: circle(100% at 0% 0%);
+		-webkit-clip-path: var(--clip);
+		clip-path: var(--clip);
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: backdrop-filter calc(var(--speed, 1) * 1s) var(--ease), clip-path 0s, -webkit-clip-path 0s;
+	}
+
+
+	#personals_modal #to_content .menu__icon, #toContentReconstruct .menu__icon {
+		--scale: 1;
+		height: calc(var(--size, 20) * 0.15vmin);
+		width: calc(var(--size, 20) * 0.15vmin);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-70%, -70%) scale(var(--scale, 1));
+		fill: var(--primary);
+		transition: all calc(var(--speed, 1) * 1s) var(--ease);
+	}
+
+
+	#personals_modal #closeBook .menu__content, #closeBookReconstruct .menu__content {
+		left: 100%;
+	}
+
+	#personals_modal #closeBook .menu__content:after, #closeBookReconstruct .menu__content:after {
+		/*background: hsl(var(--hue, 0), 50%, 50%);*/
+		content: '';
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		position: absolute;
+		height: calc(var(--size, 20) * .6vmin);
+		width: calc(var(--size, 20) * .6vmin);
+		top: 0;
+		left: 0;
+	}
+
+	#personals_modal #closeBook .menu__toggle-labelBOOK, #closeBookReconstruct .menu__toggle-labelBOOK {
+		cursor: pointer;
+		height: calc(var(--size, 20) * 0.3vmin);
+		width: calc(var(--size, 20) * 0.3vmin);
+		display: block;
+		--clip: circle(100% at 0% 0%);
+		-webkit-clip-path: var(--clip);
+		clip-path: var(--clip);
+		position: absolute;
+		top: 0;
+		/*left: 100%;*/
+		right: 0;
+		transition: backdrop-filter calc(var(--speed, 1) * 1s) var(--ease), clip-path 0s, -webkit-clip-path 0s;
+	}
+
+
+	#personals_modal #closeBook .menu__icon, #closeBookReconstruct .menu__icon {
+		--scale: 1;
+		height: calc(var(--size, 20) * 0.15vmin);
+		width: calc(var(--size, 20) * 0.15vmin);
+		position: absolute;
+		top: 50%;
+		left: 70%;
+		transform: translate(-70%, -70%) scale(var(--scale, 1));
+		fill: var(--primary);
+		transition: all calc(var(--speed, 1) * 1s) var(--ease);
+	}
+
+	.flip-book {
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+		display: none;
+		background-size: cover;
+	}
+
+	.page {
+		padding: 20px;
+		background-color: #fdfaf7;
+		color: #785e3a;
+		border: solid 1px #c2b5a3;
+		overflow: hidden;
+	}
+
+	.page .page-content {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: stretch;
+	}
+
+	.page .page-content .page-header {
+		height: 36px;
+		font-size: 30px;
+		text-transform: uppercase;
+		text-align: center;
+		font-weight: normal;
+	}
+
+	.page .page-content .page-image {
+		height: 100%;
+		background-size: contain;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+
+	.page .page-content .page-text {
+		height: 100%;
+		flex-grow: 1;
+		/*font-size: 80%;*/
+		text-align: justify;
+		margin-top: 20px;
+		/*padding-top: 10px;*/
+		padding: 10px 30px 10px;
+		margin-bottom: 92px;
+		box-sizing: border-box;
+		border-top: solid 1px #f4e8d7;
+		line-height: 34px;
+		font-size: 26px;
+
+		text-indent: 1.5cm;
+
+		overflow-y: auto;
+	}
+
+
+	.page .page-content .page-text p:first-letter {
+		font-size: 32px;
+		color: red;
+		font-weight: bold;
+	}
+
+	.page .page-content .page-footer {
+		height: 30px;
+		border-top: solid 1px #f4e8d7;
+		font-size: 80%;
+		color: #998466;
+	}
+
+	.page.--left {
+		border-right: 0;
+		box-shadow: inset -7px 0 30px -7px rgba(0, 0, 0, 0.4);
+	}
+
+	.page.--right {
+		border-left: 0;
+		box-shadow: inset 7px 0 30px -7px rgba(0, 0, 0, 0.4);
+	}
+
+	.page.--right .page-footer {
+		text-align: right;
+	}
+
+	.page.hard {
+		background-color: #f2e8d9;
+		border: solid 1px #998466;
+	}
+
+	.page.page-cover {
+		background-color: #e3d0b5;
+		color: #785e3a;
+		border: solid 1px #998466;
+	}
+
+	.page.page-cover h2 {
+		text-align: center;
+		padding-top: 50%;
+		font-size: 210%;
+	}
+
+	.page.page-cover.page-cover-top {
+		box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), -2px 0 5px 2px rgba(0, 0, 0, 0.4);
+	}
+
+	.page.page-cover.page-cover-bottom {
+		box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), 10px 0 8px 0px rgba(0, 0, 0, 0.4);
+	}
+
+	/*reconstruction*/
+
+
+	#reconstruct_modal {
+		padding: 40px 40px 0;
+		/*font-family: "Balkara";*/
+		width: 100%;
+		height: 100%;
+
+		padding: 0;
+		overflow: hidden;
+		position: relative;
+
+		align-items: center;
+		justify-content: center;
+	}
+
+	#reconstruct_modal > div {
+		/*margin-top: 20px;*/
+	}
+
+	#reconstruct_modal ul {
+		list-style: none;
+
+		counter-set: page 1;
+	}
+
+	#reconstruct_modal ul li {
+		line-height: 40px;
+		font-size: 35px;
+		padding: 10px 0;
+	}
+
+	#reconstruct_modal ul li a {
+		/*text-decoration: underline;*/
+		counter-increment: page 2;
+	}
+
+	#reconstruct_modal ul li a:first-letter, #reconstruct_modal ul li:first-letter {
+		color: red;
+		/*font-size: 35px;*/
+	}
+
+	#reconstruct_modal ul li a:after {
+		content: counter(page);
+		float: right;
+	}
+
+	#reconstruct_modal .fancybox__content {
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.page.no-indent .page-content .page-text {
+		text-indent: 0;
+	}
+
+</style>
+<div id="reconstruct_modal">
+	<div class="flip-book" id="reconstruct">
+		<!--Содержание-->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header"></h2>
+				<div class="page-text first-page">
+					<h1>Реконструкции</h1>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+
+				<div class="page-footer">1</div>
+			</div>
+		</div>
+		<div class="page no-indent">
+			<div class="page-content">
+				<h2 class="page-header">Содержание</h2>
+				<div class="page-text">
+					<ul>
+						<li>
+							<a id="maak">Реконструкция Р. Маака - 1855 год</a>
+						</li>
+						<li>
+							<a id="kochedamov">Реконструкция В.И. Кочедамова - 1978 год</a>
+						</li>
+						<li>
+							<a id="artemiev">Реконструкция А.Р. Артемьева - 1989-2002 год</a>
+						</li>
+						<li>
+							<a id="amsu">Реконструкция АмГУ - 2021 год</a>
+						</li>
+					</ul>
+				</div>
+				<div class="page-footer">2</div>
+			</div>
+		</div>
+
+		<!-- Реконструкция Маака -->
+		<div class="page ">
+			<div class="page-content">
+				<h2 class="page-header">Реконструкция Р. Маака - 1855 год</h2>
+				<div class="page-text">
+					<p>
+						Немаловажным источником информации, позволяющем судить о внутренней топографии Албазинского
+						острога 1686-1689 гг. и о местонахождении его посада, является план, снятый в 1855 г.
+						известным ботаником Р. Мааком.
+					</p>
+					<p>
+						На нем обозначены следы 12 построек, которые были видны на территории городища в середине
+						XIX в. Локализация этих построек на топографическом плане острога позволяет заключить, что
+						две из них раскопаны в 1975-1976 гг. Это ближайшая к центру крепости полуземлянка в
+						северо-западном углу крепости и средняя в ряду из трех построек, располагавшихся вдоль
+						южного края острога. С большой долей вероятности можно полагать, что следы полуземлянки,
+						раскопанной в 1991-1992 гг., также присутствуют на плане Р. Маака. Это остатки постройки,
+						ориентированной по оси запад-восток длинной стороной, которые находятся в центре у
+						обрывистого западного края городища. Локализация этой полуземлянки позволяет утверждать, что
+						около 15% территории острога, а с ним и остатки еще четырех построек, обозначенных на плане
+						Р. Маака 1855 г. у западного края острога, за прошедшие с тех пор 140 лет уничтожены водами
+						р. Амура.
+					</p>
+				</div>
+				<div class="page-footer">3</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Реконструкция Р.Маака - 1855 год</h2>
+				<div class="page-text">
+					<div class="maak person-slider">
+						<div class="carousel__slide"
+							 data-src="/img/reconstructions/first/Maak-Plan-1855.jpg"
+							 data-fancybox="maak"
+							 data-caption="Албазинский острог. План 1855 г. Выполнил Р.К. Маак."
+							 style="background-image: url(/img/reconstructions/first/Maak-Plan-1855.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">4</div>
+			</div>
+		</div>
+
+		<!-- Кочедамов -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Реконструкция В.И. Кочедамова - 1978 год</h2>
+				<div class="page-text">
+					<p>
+						В исторических источниках сохранилось подробное описание Албазинского острога, составленное
+						в 1684 г. воеводой A.Л. Толбузиным. Его обнаружил в архиве Академии наук известный
+						исследователь оборонного зодчества В.И. Кочедамов. После его изучения в своей книге «Первые
+						русские города Сибири» представил описание и реконструкцию Албазинского острога:
+						«…Выразительный силуэт имел и Албазинский рубленый город 1683 г. Его стена с трёх сторон
+						обошла старый острог, поставленный ещё в 1667 г. Никифором Черниговским на высоком
+						каменистом берегу Амура. Новые стены из городней имели высоту 5,3 м и кровлю с двойным тесом
+						с «зубцами на свесах». По верху стены шла боевая галерея, куда вели семь лестниц. Северная
+						стена имела длину 85 м, восточная делилась проездной башней на отрезки 46 м и 37 м, южная,
+						также с проезжей башней, имела стены 32 м и 43 м. Западная береговая стена длиной 97 м
+						включала две башни старого острога, а на северо-западном углу заканчивалась воеводскими
+						хоромами. Угловые башни имели стороны от 7 м до 6 м и высоту 6,4 м до облама, облам 1,4 м.
+						Спасская «с полевой приступной стороны» имела ворота и над ними приказную избу и караульню
+						на шатровой кровле. В новом сооружении выделялись две проездные башни. Первая (в восточной
+						стене, со сторонами 8,4 м) имела двойную наружную стену. Она завершалась деревянным орлом,
+						обитым белым железом. Контрастом к ней башня в южной стене, с воротами на посад. Береговые
+						башни старого острога состоя получила сложную пластическую форму, построенную на сочетании
+						глухих объемов и открытых галерей. Восьмигранная, она имела двойные стены, и потому на
+						гранях вместо обычных двух выпусков было четыре. На высоте 7 м был напуск облама в 1,4 м из
+						гладких брусьев. Над ним находилась колокольня восьмигранной формы из брёвен, рубленных «в
+						лапу». Она покоилась на внутренних стенах, что позволило создать обходную галерею, «у
+						которой перила забраны в косяк с окны и покрытую двойным тёсом с зубцами». Эта надстройка
+						завершалась 16 столбами с косячными перилами и развалом, над которым покоилась восьмигранная
+						пирамида шатра, завершённая луковицей с крестом. Стройность этого сооружения, составные
+						части которого связаны в единую гармоническую систему, делала южную башню Албазинского
+						города значительным архитектурным произведением. На территории рубленого города построили
+						только Спасскую церковь и съезжую избу. В старом остроге стоял амбар для ясачной казны и
+						находился колодец с «вододейкой» (железным механизмом). За городом, южнее, на лугу, где
+						протекала небольшая речка, стояло 40 изб посада и часовня, ограждённые рядами частокола.
+						Летом 1684 г. город был обведён валом и рвом шириной «в две косых сажени». В 1685 г. Албазин
+						был разрушен…»
+					</p>
+
+				</div>
+				<div class="page-footer">5</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Реконструкция В.И. Кочедамова - 1978 год</h2>
+				<div class="page-text">
+					<div class="kochedamov person-slider">
+						<div class="carousel__slide"
+							 data-src="/img/reconstructions/first/Kochedamov-EastTower-1683.jpg"
+							 data-fancybox="kochedamov"
+							 data-caption="Албазинский город. Восточная въездная башня. 1683 г. Реконструкция выполнена В.И. Кочедамовым."
+
+							 style="background-image: url(/img/reconstructions/first/Kochedamov-EastTower-1683.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-fancybox="kochedamov"
+							 data-src="/img/reconstructions/first/Kochedamov-Plan-1683.jpg"
+							 style="background-image: url(/img/reconstructions/first/Kochedamov-Plan-1683.jpg)"
+							 data-caption="Албазинский город. План. 1683 г. Реконструкция выполнена В.И. Кочедамовым."
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">6</div>
+			</div>
+		</div>
+
+		<!-- Артемьев -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Реконструкция А.Р. Артемьева - 1989-2002 год</h2>
+				<div class="page-text">
+					<p>
+						В 1989 – 2002 гг. проводились археологические исследования Албазинского острога Амурским
+						археологическим отрядом Института истории, археологии и этнографии народов Дальнего Востока
+						ДВО РАН под руководством А.Р. Артемьева. Раскопки острога позволили уточнить некоторые
+						особенности его конструкции. В частности, установлено, что первоначально стены острога были
+						построены не из городен (плотно поставленных друг к другу срубов), как это зафиксировано в
+						описи, а в виде тына. Именно это стало причиной быстрого падения Албазина при осаде острога
+						маньчжурами в 1685 г. При возведении новой крепости её строители использовали достижения
+						европейского фортификационного искусства. В результате раскопок исследователи узнали о
+						некоторых подробностях героической обороны Албазина русскими первопроходцами. Собраны
+						интереснейшие предметы XVII в., в том числе нательные крестики, которые составили крупнейшую
+						на сегодняшний день коллекцию этих предметов на Дальнем Востоке.
+					</p>
+				</div>
+				<div class="page-footer">7</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Реконструкция А.Р. Артемьева - 1989-2002 год</h2>
+				<div class="page-text">
+					<div class="artemiev person-slider">
+						<div class="carousel__slide"
+							 data-src="/img/reconstructions/first/Artemiev.jpg"
+							 data-fancybox="artemiev"
+							 data-caption="Албазинского острога. Реконструкция выполнена А.Р. Артемьевым."
+							 style="background-image: url(/img/reconstructions/first/Artemiev.jpg)"
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">8</div>
+			</div>
+		</div>
+		<!-- Реконструкция Амгу -->
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Реконструкция АмГУ - 2021 год</h2>
+				<div class="page-text">
+					<p>
+						Трёхмерное компьютерное моделирование Албазинского острога периода 1684 г. было выполнено
+						сотрудниками Амурского государственного университета и Амурского научного центра ДВО РАН,
+						Благовещенск (И.Е. Ерёмин, В.И. Трухин, С.Н. Бугаев). При создании модели использовались все
+						данные, полученные в результате длительных исследований крепости (архивные тексты,
+						исторические рисунки, археологические раскопки, архитектурные аналоги и др.) с применением
+						системного подхода: от разработки схематичной двухмерной модели до создания реалистичной
+						трехмерной модели (макета).
+					</p>
+				</div>
+				<div class="page-footer">9</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-content">
+				<h2 class="page-header">Реконструкция АмГУ - 2021 год</h2>
+				<div class="page-text">
+					<div class="amsu person-slider">
+						<div class="carousel__slide"
+							 data-src="/img/reconstructions/new/1.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Дефрагментация исторической зарисовки острога в 1685 г.:
+1)	малый Черниговский острог; 2) комплекс Воскресенской церкви;
+4)	территория воеводской усадьбы; 4) строения новой приказной избы;
+5)	гостиный (торговый) двор; 6) таможенная изба и ясачные амбары.
+"
+
+							 style='background: url(/img/reconstructions/new/1.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+						<div class="carousel__slide"
+							 data-src="/img/reconstructions/new/2.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Экспликация устройства Албазинского острога в 1685 г.:
+1)	восточная проездная башня; 2) южная круглая проездная башня;
+3) юго-восточная угловая башня; 4) северо-восточная угловая башня;
+5) юго-западная угловая башня; 6) караульные избы; 7) церковь;
+8) колодец; 9) Спасская проездная башня; 10) старые западные башни;
+11) государственный амбар; 12) житница; 13) воеводские хоромы;
+14) северо-западная жилая башня; 15) воеводский амбар; 16) поварня;
+17) мыльня; 18) приказная съезжая изба; 19) оружейный склад;
+20) конюшня; 21) пороховой погреб; 22) ряды торговых лавок;
+23) оптовые амбары; 24) таможенная изба; 25) ясачные амбары.
+"
+							 style='background: url(/img/reconstructions/new/2.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+
+						</div>
+						<div class="carousel__slide"
+							 data-src="img/reconstructions/new/voevod.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Авторская компьютерная реконструкция воеводского двора."
+
+							 style='background: url(img/reconstructions/new/voevod.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="img/reconstructions/new/smallOstrog.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Авторская реконструкция малого острога Никифора Черниговского."
+							 style='background: url(img/reconstructions/new/smallOstrog.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="img/reconstructions/new/cornerTowers.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Внешний вид угловых башен острога Никифора Черниговского."
+							 style='background: url(img/reconstructions/new/cornerTowers.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="img/reconstructions/new/innerCornerTowerView.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Внутренний ракурс угловой башни острога Никифора Черниговского."
+							 style='background: url(img/reconstructions/new/innerCornerTowerView.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="img/reconstructions/new/detail3D.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Детальная 3D-модель острога, реализованная на основе топоплана."
+							 style='background: url(img/reconstructions/new/detail3D.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="img/reconstructions/new/amursuMaket.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Макет острога, экспонируемый в Научном музее Амурского госуниверситета."
+							 style='background: url(img/reconstructions/new/amursuMaket.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="img/reconstructions/new/UpdatedReplic.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Улучшенная онтологическая репликация плана острога."
+							 style='background: url(img/reconstructions/new/UpdatedReplic.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+						<div class="carousel__slide"
+							 data-src="img/reconstructions/new/updatedReconstruction.jpg"
+							 data-fancybox="amsu"
+							 data-caption="Улучшенная реконструкция общего плана Албазинского острога."
+							 style='background: url(img/reconstructions/new/updatedReconstruction.jpg);'
+						>
+							<div class="carousel__slide-item"></div>
+						</div>
+					</div>
+					<img class="pechat-image" src="img/pechat.png" alt="">
+				</div>
+				<div class="page-footer">10</div>
+			</div>
+		</div>
+	</div>
+	<!--    </div>-->
+	<div id="toContentReconstruct">
+		<label class="menu__toggle-label menu__toggle-label--closer">
+			<svg class="menu__icon" preserveAspectRatio="xMinYMin" viewBox="0 0 24 24">
+				<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path>
+			</svg>
+		</label>
+		<ul class="menu__content">
+		</ul>
+	</div>
+	<div id="closeBookReconstruct" onclick="$.fancybox.close()">
+		<label class="menu__toggle-labelBOOK menu__toggle-label--closer">
+			<svg class="menu__icon" preserveAspectRatio="xMinYMin" viewBox="0 0 24 24">
+				<path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path>
+			</svg>
+		</label>
+		<ul class="menu__content">
+		</ul>
+	</div>
+</div>
+
+<script>
+
+	// "use strict"
+
+
+	const pageFlipRecon = new PageFlip(document.getElementById('reconstruct'),
+		{
+			width: window.screen.width * .5 - 60,//800, // base page width
+			height: window.screen.height * .9,//900, // base page height
+
+			size: "fixed",
+
+			maxShadowOpacity: 0.5, // Half shadow intensity
+			showCover: false,
+			mobileScrollSupport: false, // disable content scrolling on mobile devices
+			disableFlipByClick: true,
+			// useMouseEvents: false,
+			showPageCorners: false
+		}
+	);
+
+	pageFlipRecon.loadFromHTML(document.querySelectorAll('#reconstruct .page'));
+
+	document.querySelector("#reconstruct_modal #toContentReconstruct").addEventListener('click', () => {
+		pageFlipRecon.flip(0)
+	})
+	document.querySelector("#reconstruct #maak").addEventListener("click", () => {
+		pageFlipRecon.flip(2)
+	});
+	document.querySelector("#reconstruct #kochedamov").addEventListener("click", () => {
+		pageFlipRecon.flip(4)
+	});
+	document.querySelector("#reconstruct #artemiev").addEventListener("click", () => {
+		pageFlipRecon.flip(6)
+	});
+	document.querySelector("#reconstruct #amsu").addEventListener("click", () => {
+		pageFlipRecon.flip(8)
+	});
+	pageFlipRecon.on('flip', (e) => {
+		if (e.data > 1) {
+			$("#reconstruct_modal #toContentReconstruct").show();
+		} else {
+			$("#reconstruct_modal #toContentReconstruct").hide();
+		}
+	})
+</script>

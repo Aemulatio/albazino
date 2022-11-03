@@ -1,0 +1,834 @@
+<style>
+
+    .fancybox__slide.is-selected.has-ajax {
+        padding: 0;
+    }
+
+    div.fancybox__content .carousel__button.is-close {
+        top: 10px;
+        right: calc(var(--scroll-bar-width) + var(--side-padding));
+        color: var(--close-btn-color);
+    }
+
+    div.fancybox__content {
+        padding: 0;
+    }
+
+    #quiz {
+        /*height: 100vh;*/
+        width: 100vw;
+
+        /*max-height: 100vh;*/
+
+        /*overflow: hidden;*/
+        background-image: url("img/baloon_back.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+
+    [id^=question_] {
+        height: 100%;
+        padding: 40px 0;
+    }
+
+    .question__header {
+        text-align: center;
+        font-size: 45px;
+        line-height: 50px;
+        font-weight: bold;
+    }
+
+    .question__data.with-image {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .question__data .question__image {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-basis: 30%;
+    }
+
+    .question__data .question__image img {
+        width: 100%;
+    }
+
+    .question__data.with-image .question__answers {
+        flex-basis: 60%;
+    }
+
+    .question__answers {
+        display: flex;
+        /*flex-direction: column;*/
+        justify-content: space-between;
+    }
+
+    .question__answers.column {
+        flex-direction: column;
+    }
+
+    .question__answers.column button {
+        width: 50%;
+    }
+
+
+    .question__answers button {
+        position: relative;
+
+        margin: 20px auto;
+        padding: 30px;
+        font-size: 35px;
+        line-height: 40px;
+        /*width: 50%;*/
+
+        /*background: transparent;*/
+        border: none;
+        outline: none;
+        /*background: #999999;*/
+        border-radius: 20px;
+        box-sizing: content-box;
+        flex-basis: 28%;
+        /*text-transform: lowercase;*/
+
+        transition: background-color;
+        transition-duration: 1s;
+        transform-origin: center;
+    }
+
+    .question__answers button.true {
+        /*background: #31c93d;*/
+        color: green;
+        border: 1px solid green;
+    }
+
+    .question__answers button.false {
+        /*background: red;*/
+        color: red;
+        border: 1px solid red;
+    }
+
+    .question__answers button:first-letter {
+        text-transform: uppercase;
+    }
+
+    .question__answer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .question__answer.with-image .question__answer-image {
+        flex-basis: 30%;
+    }
+
+    .question__answer.with-image .question__answer-image img {
+        width: 100%;
+    }
+
+    .question__answer.with-image .question__answer-text {
+        flex-basis: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+
+    #question_9 .question__data.with-image {
+        flex-direction: column;
+    }
+
+    #question_9 .question__answers button{
+        padding: 15px;
+    }
+
+    #question_9 .question__image {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #question_9 .question__image p {
+        font-size: 30px;
+
+        text-align: center;
+        padding: 20px 0;
+
+    }
+
+    .BlockWrapper {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        border: 1px solid;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #question_9 .question__image img {
+        width: 100%;
+        /*justify-self: center;*/
+    }
+
+    #question_9 #A, #question_9 #B, #question_9 #C,
+    #question_9 div[id^=answer] {
+        width: 22%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #question_9 div[id^=answer] {
+        height: 100%;
+    }
+
+    #question_9 .next_question {
+        display: block !important;
+    }
+
+    #question_9 .submit, .closeQuiz {
+        padding: 20px;
+        font-size: 45px;
+        line-height: 50px;
+        outline: none;
+        border: none;
+        border-radius: 20px;
+        box-sizing: content-box;
+        display: block;
+        margin: 50px auto;
+    }
+
+    [class$=image] {
+        /*display: flex;*/
+        /*justify-content: center;*/
+    }
+
+    [class$=image] img {
+        /*width: 25%;*/
+        /*max-height: 25%;*/
+        /*height: 25%;*/
+    }
+
+    .question__answer-text {
+        font-size: 35px;
+        line-height: 40px;
+        text-indent: 1.5cm;
+        padding: 20px 40px;
+    }
+
+    .quiz_start_screen .question__answer {
+        display: block !important;
+    }
+
+    .quiz_start_screen {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: space-around;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+    }
+
+    .quiz_start_screen h1 {
+        font-size: 65px;
+        line-height: 80px;
+    }
+
+    .quiz_start_screen button {
+        background: none;
+        border: none;
+        outline: none;
+        font-size: 45px;
+        line-height: 50px;
+
+        background: #999999;
+        padding: 20px;
+        border-radius: 20px;
+        box-sizing: content-box;
+
+    }
+
+
+    .next_question, .show_result {
+        padding: 20px;
+        font-size: 45px;
+        line-height: 50px;
+        outline: none;
+        border: none;
+        border-radius: 20px;
+        box-sizing: content-box;
+        display: block;
+        margin: 20px auto;
+    }
+
+    #quiz__parent {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    #quiz__sibling {
+        position: relative;
+        height: 100%;
+        padding: 50px var(--side-padding);
+        padding-right: calc(var(--scroll-bar-width) + var(--side-padding));
+
+        overflow: auto;
+    }
+
+    .flex-basis-15 {
+        flex-basis: 15% !important;
+    }
+
+    .flex-basis-20 {
+        flex-basis: 20% !important;
+    }
+
+    .flex-basis-25 {
+        flex-basis: 25% !important;
+    }
+
+    .flex-basis-50 {
+        flex-basis: 50% !important;
+    }
+
+    #resultsScreen {
+        height: 100%;
+    }
+
+    #resultsScreen > div[id$=Grade] {
+        /*padding: 40px;*/
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+    }
+
+    #resultsScreen h1 {
+        text-align: center;
+        font-size: 65px;
+        line-height: 80px;
+        padding-bottom: 30px;
+    }
+
+    #resultsScreen p {
+        text-align: justify;
+        font-size: 35px;
+        line-height: 45px;
+        padding: 10px 0;
+    }
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<div id="quiz">
+    <div id="quiz__parent">
+        <div id="quiz__sibling">
+
+            <div class="quiz_start_screen">
+                <h1>Викторина</h1>
+
+                <div class="question__answer">
+                    <div class="question__answer-text">
+                        <button id="startQuiz" class="next_question" data-question="1">Начать викторину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="question_1">
+                <div class="question__header">1. Для чего строили остроги?</div>
+                <div class="question__data">
+                    <div class="question__image"></div>
+                    <div class="question__answers column">
+                        <button>для содержания животных</button>
+                        <button data-answer="1">для обороны от противника</button>
+                        <button>для хранения оружия</button>
+                    </div>
+                </div>
+                <div class="question__answer with-image">
+                    <div class="question__answer-image">
+                        <img src="/img/quiz/1_a.webp" alt="">
+                    </div>
+                    <div class="question__answer-text">
+                        <p>
+                            Острог – фортификационное сооружение, обнесенное частоколом из заостренных сверху бревен
+                            (кольев) высотой до нескольких метров. При освоении Сибири и Дальнего Востока русскими
+                            людьми – основной вид укрепленного населенного пункта.
+                        </p>
+                        <button class="next_question" data-question="2">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
+            <div id="question_2">
+                <div class="question__header">
+                    2. Когда и кем был отстроен Албазин, как первое укреплённое поселение русских на Амуре?
+                </div>
+                <div class="question__data with-image">
+                    <div class="question__image">
+                        <img src="/img/quiz/2_q.jpg" alt="">
+                    </div>
+                    <div class="question__answers column do-not-change">
+                        <button data-answer="1">В 1665 г. Никифором Черниговским</button>
+                        <button>В 1682 г. Андреем Воейковым</button>
+                        <button>В 1682 г. Иваном Войлошниковым</button>
+                    </div>
+                </div>
+                <div class="question__answer">
+                    <div class="question__answer-image"></div>
+                    <div class="question__answer-text">
+                        <p>
+                            Как первое русское укреплённое поселение на Амуре острог был отстроен в 1665 г. беглыми
+                            казаками во главе с Никифором Черниговским.
+                        </p>
+                        <button class="next_question" data-question="3">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
+            <div id="question_3">
+                <div class="question__header">
+                    3. Кому царь Алексей Михайлович передал знамя Албазинского острога?
+                </div>
+                <div class="question__data with-image">
+                    <div class="question__image flex-basis-20">
+                        <img src="/img/quiz/3_q.jpg" alt="">
+                    </div>
+                    <div class="question__answers column do-not-change flex-basis-50">
+                        <button>Никифору Черниговскому</button>
+                        <button data-answer="1">Ерофею Хабарову</button>
+                        <button>Ивану Москвитину</button>
+                    </div>
+                </div>
+                <div class="question__answer with-image">
+                    <div class="question__answer-image">
+                        <img src="/img/quiz/3_a.jpg" alt="">
+                    </div>
+                    <div class="question__answer-text">
+                        <p>
+                            Знамя прислано из Москвы Царем Алексеем Михайловичем вместе с грамотою письменному Голове
+                            Ерофею Хабарову в 1653 году и передано казакам думным дворянином Зиновьевым, для водружения
+                            на землях, покоренных ими русской Державе.
+                        </p>
+                        <button class="next_question" data-question="4">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
+            <div id="question_4">
+                <div class="question__header">4. Что изображено на серебряной печати Албазинского острога?</div>
+                <div class="question__data">
+                    <div class="question__image"></div>
+                    <div class="question__answers column">
+                        <button>
+                            Увенчанный короной орёл, держащий в своих лапах лук и стрелу, направленную вверх
+                        </button>
+                        <button>Двухглавый орёл, держащий в лапах скипетр и державу</button>
+                        <button data-answer="1">
+                            Увенчанный короной орёл, держащий в своих лапах лук и стрелу, направленную вниз
+                        </button>
+                    </div>
+                </div>
+                <div class="question__answer with-image">
+                    <div class="question__answer-image flex-basis-25">
+                        <img src="/img/quiz/4_a.jpg" alt="">
+                    </div>
+                    <div class="question__answer-text">
+                        <p>
+                            Увенчанный короной орёл, держащий в своих лапах лук и стрелу, направленную вниз, а по кругу
+                            надпись «печат[ь] великих г[осу]дарей сибирские земли Албазинск[о]го острогу»
+                        </p>
+                        <button class="next_question" data-question="5">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
+            <div id="question_5">
+                <div class="question__header">
+                    5. В каком году по легенде в Албазинский острог была привезена Албазинская икона Божьей Матери?
+                </div>
+                <div class="question__data with-image">
+                    <div class="question__image flex-basis-20">
+                        <img src="/img/quiz/5_q.jpg" alt="">
+                    </div>
+                    <div class="question__answers column do-not-change flex-basis-50">
+                        <button>1672 г.</button>
+                        <button>1650 г.</button>
+                        <button data-answer="1">1665 г.</button>
+                    </div>
+                </div>
+                <div class="question__answer with-image">
+                    <div class="question__answer-image flex-basis-15">
+                        <img src="/img/quiz/5_a.jfif" alt="">
+                    </div>
+                    <div class="question__answer-text">
+                        <p>
+                            По приданию привез её в Албазин прибывший туда в 1665 г. вместе с Никифором Черниговским
+                            иеромонах Гермоген.
+                        </p>
+                        <button class="next_question" data-question="6">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
+            <div id="question_6">
+                <div class="question__header">
+                    6. Нерчинский сын боярский, русский дипломат, несколько раз встававший во главе дипломатических
+                    миссий к монголам. В 1678 году был назначен приказным Албазинского острога. Неоднократно входил в
+                    состав дипломатических миссий, одна из последних была в Пекин.
+                </div>
+                <div class="question__data with-image">
+                    <div class="question__image flex-basis-15">
+                        <img src="/img/quiz/6_q.jpg" alt="">
+                    </div>
+                    <div class="question__answers column do-not-change">
+                        <button data-answer="1">Григорий Лоншаков</button>
+                        <button>Иван Войлошников</button>
+                        <button>Алексей Толбузин</button>
+                    </div>
+                </div>
+                <div class="question__answer ">
+                    <div class="question__answer-image"></div>
+                    <div class="question__answer-text">
+                        <p>
+                            Григорий Лоншаков неоднократно использовался Нерчинским воеводой для дипломатических связей.
+                            В 1690 году Григорий Лоншаков направляется в Пекин с дипломатической миссией.
+                        </p>
+                        <button class="next_question" data-question="7">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
+            <div id="question_7">
+                <div class="question__header">
+                    7. Кто принял командование Албазинским острогом и гарнизоном после смерти Алексея Толбузина в 1686
+                    г.
+                </div>
+                <div class="question__data">
+                    <div class="question__image"></div>
+                    <div class="question__answers column">
+                        <button>Григорий Лоншаков</button>
+                        <button data-answer="1">Афанасий Бейтон</button>
+                        <button>Федор Головин</button>
+                    </div>
+                </div>
+                <div class="question__answer with-image">
+                    <div class="question__answer-image flex-basis-25">
+                        <img src="/img/quiz/7_a.webp" alt="">
+                    </div>
+                    <div class="question__answer-text">
+                        <p>
+                            Афанасий Бейтон с 1685 г. – казачий голова, назначен командиром полка. С 7 июля 1686 г. по
+                            30 августа 1687 г. Бейтон участвовал в обороне Албазина. После смерти Толбузина принял
+                            командование крепостью и гарнизоном
+                        </p>
+                        <button class="next_question" data-question="8">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
+            <div id="question_8">
+                <div class="question__header">8. Чем в Албазинском остроге стеклили окна?</div>
+                <div class="question__data">
+                    <div class="question__image"></div>
+                    <div class="question__answers column">
+                        <button data-answer="1">Слюда</button>
+                        <button>Стекло</button>
+                        <button>Паюс</button>
+                    </div>
+                </div>
+                <div class="question__answer with-image">
+                    <div class="question__answer-image">
+                        <img src="/img/quiz/8_a.jpg" alt="">
+                    </div>
+                    <div class="question__answer-text">
+                        <p>
+                            Слюда как заменитель стекла получила распространение со времен Древней Руси.
+                        </p>
+                        <button class="next_question" data-question="9">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
+            <div id="question_9">
+                <div class="question__header">
+                    9. Установите соответствие между датой постройки укреплений Албазинского
+                    острога с их чертежом.
+                </div>
+                <div class="question__data with-image">
+                    <div class="question__image">
+                        <div id="A">
+                            <p>
+                                1 -1682-1685 – большой деревянный острог
+                            </p>
+                            <div class="BlockWrapper" data-result="B">
+                                <img src="/img/quiz/9_b.jpg" alt="">
+                                <p>А</p>
+                            </div>
+                        </div>
+                        <div id="B">
+                            <p>
+                                2 -1686-1689 – деревоземляная крепость
+                            </p>
+                            <div class="BlockWrapper" data-result="C">
+                                <img src="/img/quiz/9_c.jpg" alt="">
+                                <p>Б</p>
+                            </div>
+                        </div>
+                        <div id="C">
+                            <p>
+                                3 -1665-1666– малый деревянный острог
+                            </p>
+                            <div class="BlockWrapper" data-result="A">
+                                <img src="/img/quiz/9_a.jpg" alt="">
+                                <p>В</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="question__answers">
+                        <button>1В 2Б 3А</button>
+                        <button data-answer="1">1В 2А 3Б</button>
+                        <button>3А 3В 1Б</button>
+                    </div>
+                </div>
+                <div class="question__answer ">
+                    <div class="question__answer-image"></div>
+                    <div class="question__answer-text">
+                        <button class="next_question" data-question="10">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
+            <div id="question_10">
+                <div class="question__header">
+                    10. Где до 1682 года находился центр административного управления Албазинским острогом?
+                </div>
+                <div class="question__data">
+                    <div class="question__image"></div>
+                    <div class="question__answers column">
+                        <button data-answer="1">Нерчинск</button>
+                        <button>Илимск</button>
+                        <button>Якутск</button>
+                    </div>
+                </div>
+                <div class="question__answer with-image">
+                    <div class="question__answer-image">
+                        <img src="/img/quiz/10_a.jpg " alt="">
+                    </div>
+                    <div class="question__answer-text">
+                        <p>
+                            Нерчинское воеводство – забайкальское воеводство Русского царства и Российской империи, с
+                            центром в Нерчинске, существовавшее в 1655-1783 гг. В 1674 году Албазинский острог был
+                            официально включён в состав Даурских острогов и административно подчинён приказному человеку
+                            Нерчинского острога. В 1689 году в Нерчинске был заключён первый в истории договор с Китаем,
+                            о разграничении приамурских территорий.
+                        </p>
+                        <button class="show_result">Показать результаты</button>
+                    </div>
+                </div>
+            </div>
+            <div id="resultsScreen" style="display: none">
+                <div id="firstGrade" style="display: none;">
+                    <h1><span class="points"></span> из 10 – Будь внимательней! Теперь Вас смело можно назвать АМАНАТОМ!
+                    </h1>
+                    <p>
+                        В данном случае слово аманат означает заложник, работник по принуждению.
+                    </p>
+                    <p>
+                        В Албазинском остроге были аманаты из местного населения, которых держали на первых этажах
+                        угловых башен
+                        острога (из источника: «избы для аманатов»).
+                    </p>
+                    <p>
+                        Вы стали заложником собственной невнимательности, ведь на выставке представлена вся история
+                        подвигов
+                        русских казаков на Амуре!
+                    </p>
+                    <button class="closeQuiz" onclick="$.fancybox.close()">Завершить викторину</button>
+
+                </div>
+                <div id="secondGrade" style="display: none;">
+                    <h1><span class="points"></span> из 10 – Неплохо! Теперь тебя смело можно назвать КРЕСТЬЯНИНОМ!</h1>
+                    <p>
+                        Вы относитесь к самой многочисленной группе населения России XVII в. Именно крестьяне стали
+                        основой
+                        формирования современного русского народа. Основное занятие – землепашество и скотоводство.
+                    </p>
+                    <p>
+                        Сохранение памяти о подвигах русских казаков на Амуре – это важное дело для каждого! Изучи и
+                        запомни сам
+                        – подскажи и расскажи товарищу!
+                    </p>
+                    <button class="closeQuiz" onclick="$.fancybox.close()">Завершить викторину</button>
+
+                </div>
+                <div id="thirdGrade" style="display: none;">
+                    <h1><span class="points"></span> из 10 – Неплохо! Теперь Вас смело можно назвать СЛУЖИЛЫМ ЧЕЛОВЕКОМ!
+                    </h1>
+                    <p>
+                        В России XIV—XVIII вв. общее название лиц, обязанных нести военную или гражданскую службу в
+                        пользу
+                        государства. В литературе встречаются и другие названия: вольные слуги, государевы люди,
+                        послужильцы,
+                        ратники, ратные люди.
+                    </p>
+                    <p>
+                        Сохранение памяти о подвигах русских казаков на Амуре – это важное дело для каждого! Изучи и
+                        запомни сам
+                        – подскажи и расскажи товарищу!
+                    </p>
+                    <button class="closeQuiz" onclick="$.fancybox.close()">Завершить викторину</button>
+
+                </div>
+                <div id="fourthGrade" style="display: none;">
+                    <h1><span class="points"></span> из 10 – Хорошо! Теперь Вас смело можно назвать ПРИКАЗНЫМ ЧЕЛОВЕКОМ!
+                    </h1>
+                    <p>
+                        В Русском государстве в XVI-XVII вв. приказные набирались из неродовитых людей для исполнения
+                        приказной
+                        службы. В военном отношении это чины среднего звена командования. Основные обязанности - ведение
+                        делопроизводства, а также выполнение различных дипломатических, полицейских и других поручений.
+                    </p>
+                    <p>
+                        Гордо несите и передавайте свои знания всем, кто любит и чтит память о подвигах русских казаков
+                        на
+                        Амуре!
+                    </p>
+                    <button class="closeQuiz" onclick="$.fancybox.close()">Завершить викторину</button>
+
+                </div>
+                <div id="fifthGrade" style="display: none;">
+                    <h1><span class="points"></span> из 10 – Отлично! Теперь Вас смело можно назвать ВОЕВОДОЙ!</h1>
+                    <p>
+                        В остроге воевода представлял государственную власть, был правителем. Все воеводы при их
+                        назначении
+                        получали Царский наказ, в котором определялись их должностные обязанности.
+                    </p>
+                    <p>
+                        Соответственно, на Вас возлагается ответственность за сохранение памяти о подвигах русских
+                        казаков на
+                        Амуре! Вы можете смело сказать: «Земля Амурская была, есть и будет русской!»
+                    </p>
+                    <button class="closeQuiz" onclick="$.fancybox.close()">Завершить викторину</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    document.querySelectorAll("[id^=question_]").forEach((el) => {
+        $(el).hide();
+    });
+    window.correct = 0; //количество верных ответов
+
+    $(".question__answer").hide(); // скрывает все ответы
+
+    $(".question__answers button").on('click', function (e) {
+        // console.log(this)
+        if ($(this).attr("data-answer") !== undefined) {
+            window.correct++;
+            // $(this).siblings().each((index, element) => {
+            //     $(element).addClass("false").attr("disabled", "disabled")
+            //     console.log(element)
+            // })
+            $(this).addClass("true")
+        } else {
+            $(this).siblings().each((index, element) => {
+                if (element.hasAttribute("data-answer")) {
+                    $(element).addClass("true").attr('disabled', "disabled");
+                } else {
+                    // $(element).addClass("false").attr("disabled", "disabled")
+                }
+            })
+            $(this).addClass("false")
+        }
+
+        if ($(this).parent().hasClass("column") && !$(this).parent().hasClass("do-not-change")) {
+            let whatToAnime = $(this).parent().children();
+
+            var group = $(this).parent()[0];
+            var nodes = whatToAnime;
+            var total = nodes.length;
+            var ease = Power1.easeInOut;
+            var boxes = [];
+
+            for (var i = 0; i < total; i++) {
+
+                var node = nodes[i];
+
+                // Initialize transforms on node
+                TweenLite.set(node, {x: 0});
+
+                boxes[i] = {
+                    transform: node._gsTransform,
+                    x: node.offsetLeft,
+                    y: node.offsetTop,
+                    node
+                };
+            }
+
+            group.classList.toggle("column");
+
+            for (var i = 0; i < total; i++) {
+
+                var box = boxes[i];
+
+                var lastX = box.x;
+                var lastY = box.y;
+
+                box.x = box.node.offsetLeft;
+                box.y = box.node.offsetTop;
+
+                // Continue if box hasn't moved
+                if (lastX === box.x && lastY === box.y) continue;
+
+                // Reversed delta values taking into account current transforms
+                var x = box.transform.x + lastX - box.x;
+                var y = box.transform.y + lastY - box.y;
+
+                // Tween to 0 to remove the transforms
+                TweenLite.fromTo(box.node, 0.5, {x, y}, {x: 0, y: 0, ease});
+            }
+
+        }
+
+        // $(this).parents(".question__answers").hide();
+        // $(this).parents(".question__answers").siblings(".question__image").hide();
+        $(this).parents(".question__data").siblings(".question__answer").fadeIn();
+    })
+
+    /**
+     * Вешает событие по клику, которое будет скрывать текущий вопрос и открывать следующий
+     * */
+    $("button.next_question").on('click', function (e) {
+        $(this).parent().parent().parent().hide();
+        $(`#question_${$(e.target).attr('data-question')}`).show();
+    })
+
+
+    $(".show_result").on('click', function (e) {
+        $(this).parent().parent().parent().hide();
+        $("#resultsScreen").show();
+
+        $(".points").text(window.correct);
+        if (window.correct === 10) {
+            $("#fifthGrade").show();
+            return
+        }
+        if (window.correct > 7) {
+            $("#fourthGrade").show();
+            return
+        }
+        if (window.correct > 5) {
+            $("#thirdGrade").show();
+            return
+        }
+        if (window.correct > 3) {
+            $("#secondGrade").show();
+            return
+        }
+        if (window.correct > -1) {
+            $("#firstGrade").show();
+        }
+    })
+
+</script>

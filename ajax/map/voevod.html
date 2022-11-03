@@ -1,0 +1,155 @@
+<style>
+    .fancybox__slide.is-selected.has-ajax {
+        padding: 0;
+    }
+
+    div.fancybox__content .map_point_modal + .carousel__button.is-close {
+        top: 10px;
+        right: calc(var(--scroll-bar-width) + var(--side-padding));
+        color: var(--close-btn-color);
+    }
+
+    div.fancybox__content {
+        padding: 0;
+        height: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 38px;
+        color: red;
+        line-height: 40px;
+    }
+
+    h1:first-letter {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 30px;
+        text-indent: 1.5cm;
+        line-height: 38px;
+    }
+
+    p:first-letter {
+        font-size: 36px;
+        color: red;
+        font-weight: bold;
+    }
+
+    .map_point_modal {
+        background-image: url("img/baloon_back.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        /*height: 100%;*/
+        /*width: 100%;*/
+        /*padding: 40px;*/
+        /*height: 100vh;*/
+        /*overflow-y: auto;*/
+    }
+
+    .map_point_images {
+        padding-top: 30px;
+    }
+
+    .grid-mas {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .grid-mas-item {
+        height: 100%;
+        flex-basis: 27%;
+
+        margin: 20px 0;
+        overflow: hidden;
+        padding: 20px;
+
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+    }
+
+    .grid-mas-subitem {
+        margin-top: 100%;
+    }
+
+    .map_point_modal__parent {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .map_point_modal__sibling {
+        position: relative;
+        height: 100%;
+
+        padding: 50px var(--side-padding);
+        padding-right: calc(var(--scroll-bar-width) + var(--side-padding));
+
+        overflow: auto;
+    }
+
+</style>
+
+
+<div class="map_point_modal">
+    <div class="map_point_modal__parent">
+        <div class="map_point_modal__sibling">
+            <div>
+                <h1>ВОЕВОДСКИЙ ДВОР</h1>
+                <p>
+                    В северо-западном углу Албазинского острога 1682-1685 гг. размещался воеводский двор. На его
+                    территории располагались: воеводские хоромы, воеводский амбар, помещения для дворовых людей, также
+                    здесь находились мыльня и поварня. Размеры двора точно не установлены, на китайском рисунке это
+                    единственное двухэтажное здание. Все остальные строения определяются как хозяйственные постройки.
+                </p>
+                <p>
+                    Воеводский двор входит в комплекс «Большой острог» (1685-1689). В экспозиции отражена повседневная
+                    жизнь приказных людей.
+                </p>
+            </div>
+            <div class="map_point_images">
+                <div class="grid-mas">
+                    <div class="grid-mas-item"
+                         data-src="/img/voevod/воевода%20Ордын-Нащокин.jpg"
+                         data-caption="Картина А.П. Рябушкина «Семья купца в XVII веке». 1896 г. "
+                         data-fancybox="voevod"
+                         style="background-image: url(/img/voevod/воевода%20Ордын-Нащокин.jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/voevod/Жизнь%20в%20острогах%20Сибири%20в%2017-18%20вв..jpg"
+                         data-fancybox="voevod"
+                         data-caption="Картина К. Лебедева «Поход Ермака». 1907 г."
+                         style="background-image: url(/img/voevod/Жизнь%20в%20острогах%20Сибири%20в%2017-18%20вв..jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/voevod/Портрет%20воеводы%20Ивана%20Евстафьевича%20Власова.%20Григорий%20Адольский.%20Нижегородский%20художественный%20музей.jpg"
+                         data-caption="Григорий Адольский «Портрет воеводы Ивана Евстафьевича Власова». 1695 г. "
+                         data-fancybox="voevod"
+                         style="background-image: url(/img/voevod/Портрет%20воеводы%20Ивана%20Евстафьевича%20Власова.%20Григорий%20Адольский.%20Нижегородский%20художественный%20музей.jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/voevod/Приказ%2017-18%20вв.%20Рисунок.jpg"
+                         data-caption="Рисунок. Приказ XVII-XVIII вв. "
+                         data-fancybox="voevod"
+                         style="background-image: url(/img/voevod/Приказ%2017-18%20вв.%20Рисунок.jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

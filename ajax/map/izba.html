@@ -1,0 +1,172 @@
+<style>
+    .fancybox__slide.is-selected.has-ajax {
+        padding: 0;
+    }
+
+    div.fancybox__content .map_point_modal + .carousel__button.is-close {
+        top: 10px;
+        right: calc(var(--scroll-bar-width) + var(--side-padding));
+        color: var(--close-btn-color);
+    }
+
+    div.fancybox__content {
+        padding: 0;
+        height: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 38px;
+        color: red;
+        line-height: 40px;
+    }
+
+    h1:first-letter {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 30px;
+        text-indent: 1.5cm;
+        line-height: 38px;
+    }
+
+    p:first-letter {
+        font-size: 36px;
+        color: red;
+        font-weight: bold;
+    }
+
+    .map_point_modal {
+        background-image: url("img/baloon_back.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        /*height: 100%;*/
+        /*width: 100%;*/
+        /*padding: 40px;*/
+        /*height: 100vh;*/
+        /*overflow-y: auto;*/
+    }
+
+    .map_point_images {
+        padding-top: 30px;
+    }
+
+    .grid-mas {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .grid-mas-item {
+        height: 100%;
+        flex-basis: 27%;
+
+        margin: 20px 0;
+        overflow: hidden;
+        padding: 20px;
+
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+    }
+
+    .grid-mas-subitem {
+        margin-top: 100%;
+    }
+
+    .map_point_modal__parent {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .map_point_modal__sibling {
+        position: relative;
+        height: 100%;
+
+        padding: 50px var(--side-padding);
+        padding-right: calc(var(--scroll-bar-width) + var(--side-padding));
+
+        overflow: auto;
+    }
+
+</style>
+
+<div class="map_point_modal">
+    <div class="map_point_modal__parent">
+        <div class="map_point_modal__sibling">
+            <div>
+                <h1>СЪЕЗЖАЯ ИЗБА</h1>
+                <p>
+                    Административный центр Албазинского острога 1682-1685 гг. – съезжая изба. Размер строения
+                    неизвестен. Включала в себя помещения, в которых размещались подьячие, там же был архив, склад, где
+                    хранились барабаны, знамена. Рядом располагалась тюрьма.
+                </p>
+                <p>
+                    В Приказной избе хранились государевы грамоты и печать; приходные и расходные книги; росписи разных
+                    податей и сборов, а также сами сборы (государева казна). В штат «приказных» в разные периоды
+                    входили: приставы, надельщики, рассыльщики и сторожа, которые приводили в исполнение приказания
+                    воеводы. При смене воевод сдавались все дела и казенное имущество по описям и книгам (сдаточным
+                    описям, или «росписным спискам»). Один экземпляр описи посылался в Москву, в приказ, в ведении
+                    которого находился город с уездом.
+                </p>
+                <p>
+                    Съезжая изба входит в комплекс «Большой острог» (1685-1689), сохраняя традиции административного
+                    здания. В избе расположены экспозиции, которые объединяют все актуальные вопросы истории и изучения
+                    Албазинского острога (мирная жизнь, оборона крепости, исследования и история Албазина XIX-XXI вв.)
+                </p>
+            </div>
+            <div class="map_point_images">
+                <div class="grid-mas">
+                    <div class="grid-mas-item"
+                         data-src="/img/izba/2.jpg"
+                         data-fancybox="izba"
+                         data-caption="Чертёж р. Амур, составленный Афанасием Бейтоном, руководителем обороны Албазинского острога (1686-1687). Из «Хорографической чертежной книги» С.У. Ремезова. 1701 г."
+                         style="background-image: url(/img/izba/2.jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/izba/В%20московских%20приказах.jpg" data-fancybox="izba"
+                         data-caption="Картина С.В. Иванова «В приказе московских времен». Картон, масло. 1907 г."
+                         style="background-image: url(/img/izba/В%20московских%20приказах.jpg)"
+                    >
+
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/izba/Вид%20на%20Нерчинск,%20гравюра%201710%20г..jpg" data-fancybox="izba"
+                         data-caption="Вид на Нерчинск. Гравюра, 1710 г."
+                         style="background-image: url(/img/izba/Вид%20на%20Нерчинск,%20гравюра%201710%20г..jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/izba/Печать%20для%20ясачной%20казны.%20Албазинский%20острог,%201682%20г..jpg"
+                         data-fancybox="izba"
+                         data-caption="Серебряная печать Албазинского воеводства (1682-1689). Хранится в Государственном Эрмитаже."
+                         style="background-image: url(/img/izba/Печать%20для%20ясачной%20казны.%20Албазинский%20острог,%201682%20г..jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/izba/Приезд%20воеводы%20(картина%20С.В.%20Иванова).jpg"
+                         data-fancybox="izba"
+                         data-caption="Картина С.В. Иванова «Приезд воеводы». Картон, масло. 1909 г."
+                         style="background-image: url('/img/izba/Приезд%20воеводы%20(картина%20С.В.%20Иванова).jpg')"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

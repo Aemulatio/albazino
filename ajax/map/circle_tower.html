@@ -1,0 +1,179 @@
+<style>
+    .fancybox__slide.is-selected.has-ajax {
+        padding: 0;
+    }
+
+    div.fancybox__content .map_point_modal + .carousel__button.is-close {
+        top: 10px;
+        right: calc(var(--scroll-bar-width) + var(--side-padding));
+        color: var(--close-btn-color);
+    }
+
+    div.fancybox__content {
+        padding: 0;
+        height: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 38px;
+        color: red;
+        line-height: 40px;
+    }
+
+    h1:first-letter {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 30px;
+        text-indent: 1.5cm;
+        line-height: 38px;
+    }
+
+    p:first-letter {
+        font-size: 36px;
+        color: red;
+        font-weight: bold;
+    }
+
+    .map_point_modal {
+        background-image: url("img/baloon_back.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        /*height: 100%;*/
+        /*width: 100%;*/
+        /*padding: 40px;*/
+        /*height: 100vh;*/
+        /*overflow-y: auto;*/
+    }
+
+    .map_point_images {
+        padding-top: 30px;
+    }
+
+    .grid-mas {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .grid-mas-item {
+        height: 100%;
+        flex-basis: 27%;
+
+        margin: 20px 0;
+        overflow: hidden;
+        padding: 20px;
+
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+    }
+
+    .grid-mas-subitem {
+        margin-top: 100%;
+    }
+
+    .map_point_modal__parent {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .map_point_modal__sibling {
+        position: relative;
+        height: 100%;
+
+        padding: 50px var(--side-padding);
+        padding-right: calc(var(--scroll-bar-width) + var(--side-padding));
+
+        overflow: auto;
+    }
+
+</style>
+
+
+<div class="map_point_modal">
+    <div class="map_point_modal__parent">
+        <div class="map_point_modal__sibling">
+            <div>
+                <h1>ЮЖНАЯ (КРУГЛАЯ) БАШНЯ</h1>
+                <p>
+                    Входит в комплекс оборонительных сооружений Албазинского острога 1682-1685 гг. Сруб южной башни
+                    имеет форму восьмиугольника. Общая высота башни – около 30 метров, внутри имелось 3 внутренних
+                    перекрытия, деливших ее на 4 этажа. Стены сложены из двух рядов бревен. Над основным срубом, имевшим
+                    высоту около 8-9 метров, была выстроена колокольня, срубы строений выполнены с «розвалом» из брусьев
+                    высотой около 1,5 метров. У «розвала» башни были перила из досок с окнами и кровля из двойного слоя
+                    досок с зубцами. На «розвале» колокольни нарублены 16 поддерживающих кровлю башни столбов в виде
+                    шатра, а увенчана она куполом с крестом. Высота кровли составляла 10-11 метров.
+                </p>
+                <p>
+                    Кроме оборонительной функции «круглая» башня имела входные ворота, возможно, была связана переходом
+                    со строящимся храмом внутри острога.
+                </p>
+                <p>
+                    Башня входит в комплекс «Большой острог» (1685-1689 гг.). Экспозиция включает в себя смотровую
+                    площадку с колокольней и рассказывает о строительстве сибирских и дальневосточных острогов в XVII –
+                    XVIII вв.
+                </p>
+            </div>
+            <div class="map_point_images">
+                <div class="grid-mas">
+                    <div class="grid-mas-item"
+                         data-src="/img/circle_tower/Башня%20Сумского%20острога,%201680-е%20гг..jpg"
+                         data-fancybox="circle_tower"
+                         data-caption="Башня Сумского острога. 1680-е гг."
+                         style="background-image: url(/img/circle_tower/Башня%20Сумского%20острога,%201680-е%20гг..jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/circle_tower/Колокольня%20в%20с.%20Кулига%20(Дракованово)%20Архангельской%20обл.%20XVI-XVII%20в..jpg"
+                         data-fancybox="circle_tower"
+                         data-caption="Колокольня в с. Кулига (Дракованово) Архангельской области. XVI-XVII в."
+                         style="background-image: url('/img/circle_tower/Колокольня%20в%20с.%20Кулига%20(Дракованово)%20Архангельской%20обл.%20XVI-XVII%20в..jpg')"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/circle_tower/Круглая%20башня.%20Реконструкция,%202021%20г..jpg"
+                         data-fancybox="circle_tower"
+                         data-caption="Круглая башня Албазинского острога. Реконструкция, 2021 г."
+                         style="background-image: url(/img/circle_tower/Круглая%20башня.%20Реконструкция,%202021%20г..jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/circle_tower/Надвратная%20башня%20ограды%20Николо-Карельского%20монастыря.%201691-1692%20гг.%20Перенесена%20в%20с.%20Коломенское.jpg"
+                         data-fancybox="circle_tower"
+                         data-caption="Надвратная башня ограды Николо-Карельского монастыря. 1691-1692 гг. Перенесена в с. Коломенское."
+                         style="background-image: url(/img/circle_tower/Надвратная%20башня%20ограды%20Николо-Карельского%20монастыря.%201691-1692%20гг.%20Перенесена%20в%20с.%20Коломенское.jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/circle_tower/Никольская%20церковь%20в%20дер.%20Панилово%20Архангельской%20обл.%201600%20г..jpg"
+                         data-fancybox="circle_tower"
+                         data-caption="Никольская церковь в дер. Панилово Архангельской области. 1600 г."
+                         style="background-image: url(/img/circle_tower/Никольская%20церковь%20в%20дер.%20Панилово%20Архангельской%20обл.%201600%20г..jpg)"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                    <div class="grid-mas-item"
+                         data-src="/img/circle_tower/Проездная%20башня%20Николо-Корельского%20монастыря%20(кон.%2017%20-%20нач.%2018%20в.,%20встречается%20также%20дата%201698%20г.).jpg"
+                         data-fancybox="circle_tower"
+                         data-caption="Проездная башня Николо-Корельского монастыря. Конец XVII – начало XVIII в., встречается также дата 1698 г."
+                         style="background-image: url('/img/circle_tower/Проездная%20башня%20Николо-Корельского%20монастыря%20(кон.%2017%20-%20нач.%2018%20в.,%20встречается%20также%20дата%201698%20г.).jpg')"
+                    >
+                        <div class="grid-mas-subitem"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

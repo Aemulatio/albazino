@@ -1,0 +1,135 @@
+<style>
+	.fancybox__content {
+		padding: 0;
+	}
+
+
+	.heading-block {
+		padding: 40px 0;
+		font-family: sans-serif;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+		padding: 10px;
+		text-align: center;
+		z-index: 1;
+		color: #000;
+		transform: translateY(-50%);
+		background-color: rgba(255, 255, 255, 0.7);
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+	}
+
+	.heading-block h2 {
+		font-family: inherit;
+		margin: 0;
+		font-size: 25px;
+	}
+
+
+	.player-wrapper {
+		position: fixed;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.player-wrapper h3 {
+		position: absolute;
+		left: 4%;
+		top: 6%;
+		z-index: 10;
+		margin: 0;
+		font-size: 16px;
+		padding: 10px;
+		border: 2px solid rgba(255, 255, 255, 0.8);
+		color: #222;
+		background-color: rgba(255, 255, 255, 0.5);
+		font-family: sans-serif;
+		letter-spacing: 1.5px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+	}
+
+	.player-wrapper .plyr, .player-wrapper .plyr__video-wrapper, .player-wrapper .plyr__poster {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+	}
+
+	.player-wrapper .plyr video,
+	.player-wrapper .plyr iframe,
+	.player-wrapper .plyr__video-wrapper video,
+	.player-wrapper .plyr__video-wrapper iframe,
+	.player-wrapper .plyr__poster video, .player-wrapper .plyr__poster iframe {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-object-fit: fill;
+		-moz-object-fit: fill;
+		-ms-object-fit: fill;
+		object-fit: fill;
+	}
+
+
+	#start .plyr__controls {
+		box-sizing: border-box;
+	}
+
+	.logo.right {
+		filter: invert();
+	}
+
+	.logo.left {
+		filter: invert();
+	}
+
+</style>
+<div class="modal_block" id="start">
+
+	<div class="player-wrapper">
+		<div id="start__title">
+			<div style="position: absolute; bottom: 135px; left: 0; right: 0">
+				<p class="map_title">
+					Албазино
+				</p>
+				<p class="map_subtitle">интерактивная выставка</p>
+			</div>
+		</div>
+
+		<video class="js-player" autoplay muted crossorigin playsinline loop preload="auto">
+			<source src="/video/start_video.mp4" type="video/mp4"/>
+		</video>
+	</div>
+</div>
+<script>
+
+	window.player = Plyr.setup('.js-player',
+		{
+			controls: false,
+			muted: false,
+			autoplay: true,
+			clickToPlay: false,
+			fullscreen: {enabled: false, fallback: true, iosNative: false, container: null},
+			hideControls: false,
+			autopause: false,
+		});
+
+	window.videoInterval = setInterval(() => {
+		if (!window.player[0].playing) {
+			window.player[0].play();
+		}
+	}, 1000)
+
+</script>

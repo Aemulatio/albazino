@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Албизино</title>
+
+	<link rel="stylesheet" href="./plyr/plyr.css">
+	<link rel="stylesheet" href="./css/jquery.fancybox.min.css"/>
+	<link rel="stylesheet" href="./css/styles.css"/>
+	<link rel="stylesheet" href="./css/menu.css"/>
+	<link rel="stylesheet" href="./css/fa.min.css"/>
+
+
+</head>
+<body>
+
+<div id="main" style="opacity: 0">
+	<div class="menu">
+		<nav class="menu">
+			<input class="menu__toggle" id="menu-toggle" type="checkbox"/>
+			<label class="menu__toggle-label" for="menu-toggle"></label>
+			<label class="menu__toggle-label menu__toggle-label--closer" for="menu-toggle">
+				<svg class="menu__icon" preserveAspectRatio="xMinYMin" viewBox="0 0 24 24">
+					<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path>
+				</svg>
+				<svg class="menu__icon" preserveAspectRatio="xMinYMin" viewBox="0 0 24 24">
+					<path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path>
+				</svg>
+			</label>
+			<ul class="menu__content">
+				<li class="menu__item" style="--x: 25; --y: 25;">
+					<a class="menu__link" id="ostrog">
+						Албазинский острог
+					</a>
+				</li>
+				<li class="menu__item" style="--x: 75; --y: 25;">
+					<a class="menu__link" id="reconstructions">
+						Реконструкции острога
+					</a>
+				</li>
+				<li class="menu__item" style="--x: 75; --y: 75;">
+					<a class="menu__link" id="victorina">
+						Викторина
+					</a>
+				</li>
+				<li class="menu__item" style="--x: 25; --y: 75;">
+					<a class="menu__link" id="personals">
+						Персоны
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<svg style="position: absolute; left: 100%">
+			<defs>
+				<filter id="goo">
+					<feGaussianBlur in="SourceGraphic" stdDeviation="15" result="BLUR"></feGaussianBlur>
+					<feColorMatrix in="BLUR" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+								   result="GOO"></feColorMatrix>
+					<feBlend in="SourceGraphic" in2="goo"></feBlend>
+				</filter>
+			</defs>
+		</svg>
+	</div>
+
+	<object id="map" data="./img/svgs/map.svg" type="image/svg+xml" style="width:100%;"></object>
+	<div class="modal_block" id="menu_modal" style="display:none; ">
+		<div class="modal_block_back">
+			<div style="float: left; width: 100%;display: flex;align-items: center;height: 100%;">
+				<div style="margin: 0 auto;">
+					<h2 class="title" id="menu_title"></h2>
+					<div id="menu_text"></div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.fancybox.min.js"></script>
+<script type="module" src="./js/import.js"></script>
+<script src="./plyr/plyr.js"></script>
+<script src="./js/modal.js"></script>
+<script src="./js/menu.js"></script>
+
+<script src="js/draggable.bundle.js"></script>
+<script src="js/TweenMax.min.js"></script>
+
+
+<script>
+	window.firstLoad = true;
+	$(document).on('contextmenu', function (e) {
+		e.preventDefault();
+	})
+</script>
+
+</html>

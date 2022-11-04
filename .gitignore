@@ -5,3 +5,4 @@
 *.docx
 node_modules/
 *.psd
+.DS_Store

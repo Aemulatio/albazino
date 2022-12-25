@@ -4,28 +4,15 @@
         padding: 0;
     }
 
-    div.fancybox__content .carousel__button.is-close {
-        top: 10px;
-        right: calc(var(--scroll-bar-width) + var(--side-padding));
-        color: var(--close-btn-color);
-    }
+    /*div.fancybox__content .carousel__button.is-close {*/
+    /*    top: 10px;*/
+    /*    right: calc(var(--scroll-bar-width) + var(--side-padding));*/
+    /*    color: var(--close-btn-color);*/
+    /*}*/
 
     div.fancybox__content {
         padding: 0;
     }
-
-    #quiz {
-        /*height: 100vh;*/
-        width: 100vw;
-
-        /*max-height: 100vh;*/
-
-        /*overflow: hidden;*/
-        background-image: url("img/baloon_back.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-
 
     [id^=question_] {
         height: 100%;
@@ -141,7 +128,7 @@
         flex-direction: column;
     }
 
-    #question_9 .question__answers button{
+    #question_9 .question__answers button {
         padding: 15px;
     }
 
@@ -726,17 +713,17 @@
         // console.log(this)
         if ($(this).attr("data-answer") !== undefined) {
             window.correct++;
-            // $(this).siblings().each((index, element) => {
-            //     $(element).addClass("false").attr("disabled", "disabled")
-            //     console.log(element)
-            // })
+            $(this).siblings().each((index, element) => {
+                $(element).attr("disabled", "disabled")
+                //     console.log(element)
+            })
             $(this).addClass("true")
         } else {
             $(this).siblings().each((index, element) => {
                 if (element.hasAttribute("data-answer")) {
                     $(element).addClass("true").attr('disabled', "disabled");
                 } else {
-                    // $(element).addClass("false").attr("disabled", "disabled")
+                    $(element).attr("disabled", "disabled")
                 }
             })
             $(this).addClass("false")

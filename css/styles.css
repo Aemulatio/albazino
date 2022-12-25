@@ -115,8 +115,8 @@ body {
 /*end scrollbar*/
 /*fancybox*/
 div.fancybox__content .carousel__button.is-close {
-    /*top: 10px;*/
-    /*right: calc(var(--scroll-bar-width) + var(--side-padding));*/
+    top: 10px;
+    right: calc(var(--scroll-bar-width) + var(--side-padding));
     color: var(--close-btn-color) !important;
 }
 
@@ -1022,3 +1022,17 @@ div.fancybox__container .carousel__button.is-close {
 }
 
 
+/*quiz*/
+
+#quiz {
+    /*height: 100vh;*/
+    width: 100vw;
+
+    /*max-height: 100vh;*/
+
+    /*overflow: hidden;*/
+    background-image: url("/img/baloon_back.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+}

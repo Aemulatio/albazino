@@ -142,13 +142,13 @@ div.fancybox__content .carousel__button.is-close {
 
 #book .page-text.first-page h1 {
 	text-align: center;
-	font-size: 130px;
+	font-size: 90px;
 	line-height: 150px;
 }
 
 #reconstruct_modal .page-text.first-page h1 {
 	text-align: center;
-	font-size: 120px;
+	font-size: 90px;
 	line-height: 140px;
 }
 
@@ -373,7 +373,7 @@ div.fancybox__container .carousel__button.is-close {
 
 
 #personals_modal {
-	padding: 40px 40px 0;
+	/*padding: 40px 40px 0;*/
 	/*font-family: "Balkara";*/
 	width: 100%;
 	height: 100%;
@@ -387,10 +387,6 @@ div.fancybox__container .carousel__button.is-close {
 
 }
 
-#personals_modal > div {
-	/*margin-top: 20px;*/
-}
-
 #personals_modal ul {
 	list-style: none;
 
@@ -398,8 +394,8 @@ div.fancybox__container .carousel__button.is-close {
 }
 
 #personals_modal ul li {
-	line-height: 40px;
-	font-size: 35px;
+	line-height: 30px;
+	font-size: 23px;
 	padding: 10px 0;
 }
 

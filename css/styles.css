@@ -79,7 +79,7 @@ body {
     height: 50px;
     color: red;
     border-radius: 50%;
-    background-image: url("img/cross-svgrepo-com.svg");
+    background-image: url("../img/cross-svgrepo-com.svg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -1031,7 +1031,7 @@ div.fancybox__container .carousel__button.is-close {
     /*max-height: 100vh;*/
 
     /*overflow: hidden;*/
-    background-image: url("img/baloon_back.jpg");
+    background-image: url("../img/baloon_back.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     padding: 0;
